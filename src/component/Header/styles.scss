@@ -1,0 +1,29 @@
+.presentation-box{
+    width: 30rem;
+    height:9rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem 0rem 0rem 30rem;
+    box-shadow: 3px 2px 27px 0px rgba(169,188,206,0.53);
+    background-color: azure;
+    
+
+
+    h2{
+        font-family:'Open Sans Condensed', sans-serif;
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+        font-weight: 100;
+        color: rgb(79, 91, 114);
+    }
+    p{
+        width: 25rem;
+        height: 10rem;
+        font-family:'Open Sans Condensed', sans-serif;
+        font-size: 0.6rem;
+        letter-spacing: 1px;
+        line-height: 20px;
+        color: rgb(79, 91, 114);
+    }
+}

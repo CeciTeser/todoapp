@@ -20,9 +20,9 @@ const Login =()=>{
                     <label htmlFor="password">PASSWORD: </label>
                     <input id="password" type="text" name="password" placeholder="ENTER YOUR PASSWORD"/>
                 </div>
-                <button type="submit">PAWOW OK</button>
+                <button type="submit">LOGIN</button>
             </form>
-            <p>If you still don´t have an account then register here: <a href="">SIGN-UP</a></p>    
+            <p>Don´t have an account? <a href="">SIGN-UP</a></p>    
         </div>
 
     )

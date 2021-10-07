@@ -2,6 +2,7 @@ import './styles.scss';
 import { Nav } from '../../component';
 import { Main } from '../../component';
 import { Login } from '../Login';
+import { SignUp } from '../SignUp';
 
 const Dashboard =()=>{
 
@@ -10,6 +11,7 @@ const Dashboard =()=>{
             <Nav/>
             <Main/>
             <Login/>
+            <SignUp/>
         </div>
     )
 

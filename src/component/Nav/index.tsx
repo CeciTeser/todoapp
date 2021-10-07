@@ -17,6 +17,9 @@ const Nav = () => {
                     SIGN-UP
                 </li>
                 <li>
+                    PROFILE
+                </li>
+                <li>
                     CONTACT
                 </li>
                 <li>

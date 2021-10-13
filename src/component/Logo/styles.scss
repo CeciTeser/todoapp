@@ -1,10 +1,17 @@
 .logo{
-
-    p{
+    display: flex;
+    flex-direction: row;
     font-family:'Open Sans Condensed', sans-serif;
     font-size: 1.2rem;
     letter-spacing: 1px;
-    color: rgb(79, 91, 114);
-    padding: 1rem 0rem 0rem 1rem;
+    color: rgb(133, 88, 68);
+    
+
+    p{
+        padding: 0rem 0.5rem 0rem 1rem;
+    }
+    img{
+        width: 1.5rem; 
+        height: 1.5rem;
     }
 }

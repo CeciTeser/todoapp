@@ -9,13 +9,14 @@
     padding-top: 2rem;
     font-family:'Open Sans Condensed', sans-serif;
     letter-spacing: 1px;
-    color: rgb(36, 50, 74);
-    background-color: rgb(251, 251, 251);
+    color: rgb(133, 88, 68);
+    background-color: rgb(248, 251, 251);
     box-shadow: 8px 11px 11px 0px rgba(169,188,206,0.53);
 
     h2{
         text-align: center;
-        font-size: 1rem;    
+        font-size: 1rem;
+        color: rgb(104, 67, 51);    
     }
     div{
         display: flex;
@@ -32,7 +33,9 @@
         padding-left: 10px;
         border:1px solid rgb(223, 232, 247);
         border-radius: 3px; 
+
     }
+
     button{
         width: 5rem;
         height: 2rem;
@@ -40,13 +43,13 @@
         letter-spacing: 1px;
         border:none;
         border-radius: 3px;
-        color: azure;
-        background-color: rgb(36, 50, 74);
+        color: rgb(104, 67, 51);
+        background-color: rgb(150, 215, 215);
         margin: 2rem 0rem 0rem 2rem;
     }
     button:hover{
-        color: rgb(36, 50, 74);
-        background-color: rgb(223, 232, 247);
+        color: rgb(150, 215, 215);
+        background-color: rgb(104, 67, 51);
     }
     p{
         font-size: 0.5rem;
@@ -54,7 +57,11 @@
 
         a{
             text-decoration: none;
-            color:rgb(84, 140, 238)
+            color: rgb(104, 67, 51);
+        }
+        a:hover{
+            color: rgb(104, 67, 51);
+            background-color: rgb(150, 215, 215);
         }
     }
 }

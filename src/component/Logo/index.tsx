@@ -1,10 +1,13 @@
+
+import pawprint from '../../assets/img/pawprint.png'
+
 import './styles.scss';
 
 const Logo =()=>{
     return (
         <div className="logo">
             <p>PAWOW</p>
-            <img src="./assets/img" alt="" />
+            <img src={pawprint} alt="" />
         </div>
     )
 

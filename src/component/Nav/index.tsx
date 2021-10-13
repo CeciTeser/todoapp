@@ -1,32 +1,39 @@
-import './styles.scss';
 import { Logo } from '../Logo';
+import { FC } from "react"
+import { Link} from 'react-router-dom';
 
-const Nav = () => {
+import './styles.scss';
+
+
+
+const Nav: FC = () => {
 
     return (
+    
         <nav className="nav">
         <Logo/>
             <ul>
                 <li>
-                    HOME
+                <Link to="/dashboard"> HOME</Link>
                 </li>
                 <li>
-                    LOGIN
+                <Link to="/login"> LOGIN</Link>
                 </li>
                 <li>
-                    SIGN-UP
+                <Link to="/sign-up"> SIGN-UP</Link>
                 </li>
                 <li>
-                    PROFILE
+                <Link to="/profile"> PROFILE</Link>
                 </li>
                 <li>
-                    CONTACT
+                <Link to="/contact"> CONTACT</Link>
                 </li>
                 <li>
-                    PAMPER THEM
+                <Link to="/pamper-them"> PAMPER THEM</Link>
                 </li>
             </ul>
         </nav>
+    
     )
 
 }

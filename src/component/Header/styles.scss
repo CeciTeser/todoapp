@@ -1,3 +1,7 @@
+
+@import '../../variables.scss';
+
+
 .presentation-box{
     width: 30rem;
     height:9rem;
@@ -6,24 +10,23 @@
     align-items: center;
     margin: 2rem 0rem 0rem 30rem;
     padding-top: 1rem;
-    background-color: rgb(248, 251, 251);
+    background-color: $fifth-color;
     box-shadow: 8px 11px 11px 0px rgba(169,188,206,0.53);
 
     h2{
-        font-family:'Open Sans Condensed', sans-serif;
+
         font-size: 1.5rem;
         letter-spacing: 1px;
         font-weight: 100;
-        color: rgb(104, 67, 51);
+        color: $secondary-color;
     }
     p{
         width: 25rem;
         height: 10rem;
-        font-family:'Open Sans Condensed', sans-serif;
         font-size: 0.6rem;
         letter-spacing: 1px;
         line-height: 20px;
-        color: rgb(133, 88, 68);
+        color: $primary-color;
     }
 }
 

@@ -1,3 +1,6 @@
+
+@import '../../variables.scss';
+
 .login{ 
     width: 17rem;
     height: 25rem;
@@ -7,16 +10,15 @@
     align-items: center;
     margin: 2rem 0rem 0rem 35rem;
     padding-top: 2rem;
-    font-family:'Open Sans Condensed', sans-serif;
     letter-spacing: 1px;
-    color: rgb(133, 88, 68);
-    background-color: rgb(248, 251, 251);
+    color: $primary-color;
+    background-color: $fifth-color;
     box-shadow: 8px 11px 11px 0px rgba(169,188,206,0.53);
 
     h2{
         text-align: center;
         font-size: 1rem;
-        color: rgb(104, 67, 51);    
+        color: $secondary-color;    
     }
     div{
         display: flex;
@@ -43,13 +45,13 @@
         letter-spacing: 1px;
         border:none;
         border-radius: 3px;
-        color: rgb(104, 67, 51);
-        background-color: rgb(150, 215, 215);
+        color: $secondary-color;
+        background-color: $fourth-color;
         margin: 2rem 0rem 0rem 2rem;
     }
     button:hover{
-        color: rgb(150, 215, 215);
-        background-color: rgb(104, 67, 51);
+        color: $fourth-color;
+        background-color: $secondary-color;
     }
     p{
         font-size: 0.5rem;
@@ -57,11 +59,11 @@
 
         a{
             text-decoration: none;
-            color: rgb(104, 67, 51);
+            color: $secondary-color;
         }
         a:hover{
-            color: rgb(104, 67, 51);
-            background-color: rgb(150, 215, 215);
+            color: $secondary-color;
+            background-color: $fourth-color;
         }
     }
-}
+};

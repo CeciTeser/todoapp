@@ -1,12 +1,16 @@
-import './styles.scss';
-import { Main } from '../../component';
 import { FC } from 'react';
+import { Header } from '../../component';
+import { Layout } from '../../component/Layout';
+
+import './styles.scss';
+
 
 const Dashboard:FC =()=>{
 
     return (
         <div className="dashboard">
-            <Main/>
+            <Layout/>
+            <Header/>
         </div>
     )
 

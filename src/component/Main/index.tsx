@@ -1,13 +1,12 @@
 
-import {Header} from '../../component'
-import {Nav} from '../Nav'
+import { FC } from 'react';
 
-const Main =()=>{
+const Main:FC =({children})=>{
     return (
-        <div>
-            <Nav/>
-            <Header/>
-        </div>
+        <>
+            <main>{children}</main>
+            
+        </>
     )
 }   
 

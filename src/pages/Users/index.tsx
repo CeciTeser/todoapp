@@ -16,6 +16,7 @@ const Users = ()=>{
         showUsers(); 
     }
 
+
     return(
         <div>
             <table className="table">
@@ -44,7 +45,7 @@ const Users = ()=>{
                     <td>{user.dogname}</td>
                     <td>{user.dogage}</td>
                     <td>{user.dogweight}</td>
-                    <td>{user.dogbreed}</td>
+                    <td>{user.dogbreedselected}</td>
                 </tr>
                     );
                 })}

@@ -5,7 +5,7 @@ import { Users } from "./pages";
 
 ReactDOM.render(
     <React.StrictMode>
-    <Users />
+    <App />
     </React.StrictMode>,
     document.getElementById("root")
 );

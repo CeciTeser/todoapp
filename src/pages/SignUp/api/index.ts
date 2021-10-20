@@ -1,8 +1,8 @@
 import { api } from "../../../utils";
 
-
 type Payload ={
     password: string;
+    email: string;
     username: string;
     gender: string;
     userage: number;
@@ -10,8 +10,9 @@ type Payload ={
     dogname: string;
     dogage: number;
     dogweight: number;
-    dogbreed: string;
+    dogbreedselected: string;
 }
+
 
 const signUp = async (data: Payload) =>{
     await api.post('/users.json', data);

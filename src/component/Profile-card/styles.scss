@@ -2,23 +2,25 @@
 @import '../../variables.scss';
 
 
-.sign-up{
+.profile-card{
+    width: 22rem;
+    height: 32rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    letter-spacing: 1px;
+    color: $primary-color;
+    background-color: $fifth-color;
+    box-shadow: 8px 11px 11px 0px rgba(169,188,206,0.53);
 
     form{
-        width: 17rem;
-        height: 24rem;
+        width: 20rem;
+        height: 30rem;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
         margin-top: 1rem;
-        color: $primary-color;
-        background-color: $fifth-color;
-        box-shadow: 8px 11px 11px 0px rgba(169,188,206,0.53);
         
         h2{
             text-align: center;
@@ -35,21 +37,25 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            margin: 0.5rem 1rem 0.3rem 1rem;
-            padding: 0rem 1rem 0rem 1rem;
+            margin: 0.2rem 0rem 0.3rem 0rem;
     
             label{
                 font-size: 0.6rem;
             }
-
             input, select{
-                width: 10rem;
+                width: 11rem;
                 height: 1.5rem;
                 font-size: 0.4rem;
                 padding-left: 10px;
                 border:1px solid rgb(223, 232, 247);
                 border-radius: 3px;
             }
+        }
+        .photo{
+            width: 15rem;
+            height: 10rem;
+            margin-top: 1rem;
+            background-color: rgb(223, 233, 232);
         }
         
         button{
@@ -61,24 +67,15 @@
             border-radius: 3px;
             color: $secondary-color;
             background-color: $fourth-color;
-
-            a{
-                text-decoration: none;
-                color: $secondary-color;
-            }
-
         }
-
         button:hover{
+            color: $fourth-color;
             background-color: $secondary-color;
-            a{
-                color:$fourth-color;
-            }
         }
-
+    
         p{
             font-size: 0.5rem;
-            margin: 2rem 2.3rem 2rem 2.4rem;
+            margin: 11rem 0rem 1.3rem 0rem;
         }
     
     }

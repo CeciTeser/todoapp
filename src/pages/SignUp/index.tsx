@@ -2,8 +2,6 @@
 import { FormEvent,  FC, useState } from 'react';
 import { signUp } from './api';
 import { Layout, Presentation} from '../../component';
-import { getBreeds } from '../../api';
-import { Breeds } from '../../types';
 
 import './styles.scss';
 
@@ -22,7 +20,7 @@ const SignUp: FC = ()=>{
 
         signUp ({username, password, email })
         
-        
+
     }
 
 
@@ -53,8 +51,8 @@ const SignUp: FC = ()=>{
                     
                     <p>Note: if you have more than one dog, you should create a profile per dog so we can addapt the fun for you and your dog.</p>
 
-                    <button type="submit"><a href="/profile">BECOME A PAWOW</a></button>
-                </form>    
+                    <button type="submit">BECOME A PAWOW</button>
+                </form>   
             </div>
         </Layout>
     )

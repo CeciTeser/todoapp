@@ -1,10 +1,12 @@
+@import '../../scss/variables.scss';
+
 .logo{
     display: flex;
     flex-direction: row;
     font-family:'Open Sans Condensed', sans-serif;
     font-size: 1.2rem;
     letter-spacing: 1px;
-    color: rgb(133, 88, 68);
+    color: $primary-color;
     
 
     p{

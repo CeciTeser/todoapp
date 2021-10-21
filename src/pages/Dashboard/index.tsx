@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Header } from '../../component';
+import { Presentation } from '../../component';
 import { Layout } from '../../component/Layout';
 
 import './styles.scss';
@@ -9,8 +9,8 @@ const Dashboard:FC =()=>{
 
     return (
         <div className="dashboard">
-            <Layout/>
-            <Header/>
+            <Layout page ='home'/>
+            <Presentation/>
         </div>
     )
 

@@ -1,10 +1,13 @@
 
 import { FC } from 'react';
 
-const Main:FC =({children})=>{
+type Props={
+    className?: string,
+}
+const Main:FC <Props> =({children, className})=>{
     return (
         <>
-            <main>{children}</main>
+            <main className = {className}>{children}</main>
             
         </>
     )

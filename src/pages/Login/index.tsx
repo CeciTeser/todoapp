@@ -1,7 +1,7 @@
 import { FC, FormEvent, useState } from 'react';
 import { User } from '../../types'
 import { getUsers } from '../../api';
-import { Layout } from '../../component';
+import { Layout} from '../../component';
 
 import './styles.scss';
 
@@ -35,34 +35,36 @@ const Login:FC =()=>{
     }
 
     return (  
-        <Layout>
-        <div className="login">
-            <form action="" onSubmit={handleSubmit}>
-                <h2>LOGIN</h2>
-                <div>
-                    <label htmlFor="email">EMAIL: </label>
-                    <input 
-                    id="email" 
-                    type="email" 
-                    name="email" 
-                    placeholder="ENTER YOUR EMAIL" 
-                    onChange={(e)=>{setEmail(e.target.value)}} 
-                    required />
-                </div>
-                <div>
-                    <label htmlFor="password">PASSWORD: </label>
-                    <input 
-                    id="password" 
-                    type="password" 
-                    name="password" 
-                    placeholder="ENTER YOUR PASSWORD" 
-                    onChange={(e)=>{setPassword(e.target.value)}} 
-                    required/>
-                </div>
-                <button type="submit">LOGIN</button>
-            </form>
-            <p>Don´t have an account? <a href="<SignUp/>">SIGN-UP</a></p>  
-            <p>Login de: {userLogged?.map(user=>{
+        <Layout page ='Login'>
+        <div className='login'>
+            <div className="login-form">
+                <form action="" onSubmit={handleSubmit}>
+                    <h2>LOGIN</h2>
+                    <div>
+                        <label htmlFor="email">EMAIL: </label>
+                        <input 
+                        id="email" 
+                        type="email" 
+                        name="email" 
+                        placeholder="ENTER YOUR EMAIL" 
+                        onChange={(e)=>{setEmail(e.target.value)}} 
+                        required />
+                    </div>
+                    <div>
+                        <label htmlFor="password">PASSWORD: </label>
+                        <input 
+                        id="password" 
+                        type="password" 
+                        name="password" 
+                        placeholder="ENTER YOUR PASSWORD" 
+                        onChange={(e)=>{setPassword(e.target.value)}} 
+                        required/>
+                    </div>
+                    <button type="submit">LOGIN</button>
+                    <p>Don´t have an account? <a href="/sign-up">SIGN-UP</a></p>
+                </form>
+            </div>   
+            <p className="test">Login de: {userLogged?.map(user=>{
                             return (
                                     <span>{user.username} {user.id}</span> 
                             )

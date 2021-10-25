@@ -1,9 +1,11 @@
 import { FC, FormEvent, useState } from 'react';
-import { User } from '../../types'
-import { getUsers } from '../../api';
 import { Layout} from '../../component';
+import { WithAuth } from '../../hoc';
+import { useAuth } from '../../hooks';
+import { Link, useHistory } from 'react-router-dom';
 
 import './styles.scss';
+
 
 
 const Login:FC =()=>{
@@ -11,28 +13,42 @@ const Login:FC =()=>{
     const [email, setEmail] = useState <string>('')
     const [password, setPassword] = useState <string>('')
 
-    const [users, setUsers]= useState<User[] | undefined>();
-    const [userLogged, setUserLogged]= useState<User[] | undefined>()
+    // const [users, setUsers]= useState<User[] | undefined>();
+    // const [userLogged, setUserLogged]= useState<User[] | undefined>()
 
-    const getUsers2 = async() =>{
-        try{ 
-            const response = await getUsers(); 
-            setUsers(response);
+    const { login, userSession } = useAuth();
+    const { push } = useHistory();
+
+    // const getUsers2 = async() =>{
+    //     try{ 
+    //         const response = await getUsers(); 
+    //         setUsers(response);
             
-        } catch(err){
-            console.log(err);
-        }
-    }
-    (!users)? getUsers2():console.log('usuarios' , users);
+    //     } catch(err){
+    //         console.log(err);
+    //     }
+    // }
+    // (!users)? getUsers2():console.log('usuarios' , users);
 
     const handleSubmit = async (e: FormEvent) =>  {
         e.preventDefault();
         console.log("Login event");
 
-        const output = users?.filter(Item =>Item.email===email && Item.password===password);
-        setUserLogged(output)
+        try {
+            await login(email, password);
+        } catch (err) {
+            console.log(err);
+            }
+
+        // const output = users?.filter(Item =>Item.email===email && Item.password===password);
+        // setUserLogged(output)
 
     }
+
+    if (userSession) {
+        localStorage.setItem("user", JSON.stringify(userSession));
+        push("/profile")
+        }
 
     return (  
         <Layout page ='Login'>
@@ -61,17 +77,11 @@ const Login:FC =()=>{
                         required/>
                     </div>
                     <button type="submit">LOGIN</button>
-                    <p>Don´t have an account? <a href="/sign-up">SIGN-UP</a></p>
+                    <p>Don´t have an account? <Link to="/sign-up">SIGN-UP</Link></p>
                 </form>
             </div>   
-            <p className="test">Login de: {userLogged?.map(user=>{
-                            return (
-                                    <span>{user.username} {user.id}</span> 
-                            )
-                        })} </p>
-            
         </div>
         </Layout>
     )
 }
-export {Login};
+export default WithAuth(Login);

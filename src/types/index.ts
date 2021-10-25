@@ -3,12 +3,7 @@ export type User = {
     password: string, 
     email: string, 
     username: string;
-    gender: string;
-    userage: number;
-    userweight: number;
     dogname: string;
-    dogage: number;
-    dogweight: number;
     dogbreedselected: string;
 };
 

@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { Presentation } from '../../component';
 import { Layout } from '../../component/Layout';
+import { WithAuth } from '../../hoc';
 
 import './styles.scss';
 
@@ -16,4 +17,6 @@ const Dashboard:FC =()=>{
 
 }
 
-export {Dashboard};
+
+
+export default WithAuth(Dashboard);

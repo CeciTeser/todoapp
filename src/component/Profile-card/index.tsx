@@ -1,30 +1,29 @@
-// import dog from '../../assets/img/dog.png'
-// import user from '../../assets/img/user.png'
-import { FormEvent,  FC, useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { profile } from './api';
-import { getBreeds } from '../../api';
-import { Breeds } from '../../types';
+import { getBreeds} from '../../api';
+import { Breeds} from '../../types';
+import { useAuth } from '../../hooks';
 
 import './styles.scss';
 
-const ProfileCard: FC  =()=>{
-    
-        const [username, setUsername] = useState <string>('')
-        const [email, setEmail] = useState <string>('')
+
+const ProfileCard =()=>{
+
+
         const [dogname, setDogName] = useState <string>('')
     
         const [dogbreed, setDogBreed] = useState<Breeds[] | undefined>();
         const [dogbreedselected, setDogBreedSelected] = useState <string>('');
-        
-    
-    
-        const handleSubmit = (e: FormEvent) => {
+
+
+        const {userSession } = useAuth();
+
+        const handleSubmit =  (e: FormEvent<HTMLElement>) => {
             e.preventDefault();
             console.log("Profile event");
-    
-            profile ({username, email, dogname, dogbreedselected})
-            
-            
+
+            profile ({dogname, dogbreedselected})
+                
         }
     
         const showBreeds = async ()=>{
@@ -33,21 +32,21 @@ const ProfileCard: FC  =()=>{
         };
     
         (!dogbreed)? showBreeds(): console.log('breeds' , dogbreed);  
-    
+
+
     return (
             <div className="profile-card">
                 <form action="" onSubmit={handleSubmit}>
                     <h2>PROFILE</h2>
                     <div>
                         <label htmlFor="user-name">USER NAME: </label>
-                        <input id="user-name" type="text" name="user-name" placeholder="ENTER YOUR USER NAME" onChange={(e)=>{
-                            setUsername(e.target.value)
+                        <input id="user-name" type="text" name="user-name" value ={userSession.username} placeholder="ENTER YOUR USER NAME" onChange={(e)=>{
+                        
                         }}/>
                     </div>
                     <div>
                         <label htmlFor="email">EMAIL: </label>
-                        <input id="email" type="email" name="email" placeholder="ENTER AN EMAIL" onChange={(e)=>{
-                            setEmail(e.target.value)
+                        <input id="email" type="email" name="email" value ={userSession.email} placeholder="ENTER AN EMAIL" onChange={(e)=>{
                         }}/>
                     </div>
                     <div>

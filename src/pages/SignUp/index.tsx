@@ -2,6 +2,7 @@
 import { FormEvent,  FC, useState } from 'react';
 import { signUp } from './api';
 import { Layout, Presentation} from '../../component';
+import { WithAuth } from '../../hoc';
 
 import './styles.scss';
 
@@ -59,4 +60,4 @@ const SignUp: FC = ()=>{
 }
 
 
-export { SignUp } 
+export default WithAuth(SignUp);

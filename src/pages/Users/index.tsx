@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { getUsers } from "../../api";
+import { WithAuth } from "../../hoc";
 import { User } from "../../types";
 
 const Users = ()=>{
@@ -39,12 +40,7 @@ const Users = ()=>{
                 <tr>
                     <td>{user.id}</td>
                     <td>{user.username}</td>
-                    <td>{user.gender}</td>
-                    <td>{user.userage}</td>
-                    <td>{user.userweight}</td>
                     <td>{user.dogname}</td>
-                    <td>{user.dogage}</td>
-                    <td>{user.dogweight}</td>
                     <td>{user.dogbreedselected}</td>
                 </tr>
                     );
@@ -55,4 +51,4 @@ const Users = ()=>{
     )
 };
 
-export { Users };
+export default WithAuth(Users);

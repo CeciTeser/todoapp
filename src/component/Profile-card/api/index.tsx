@@ -1,12 +1,15 @@
 
-import { User } from "../../../types";
 import { api } from "../../../utils";
 
-type Profile =  Omit <User, 'id' | 'password'| 'email'| 'username'>
+export type Profile = {
+    dogname: string;
+    dogbreedselected: string;
+}   
 
+const profile= async (query:string, data: Profile) =>{
 
-const profile = async (data: Profile) =>{
-    await api.patch('/users.json', data);
+    await api.post(`/users/${query}/dogs.json`, data);
+
 }
 
 export { profile };

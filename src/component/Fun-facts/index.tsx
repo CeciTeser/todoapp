@@ -1,5 +1,6 @@
-
+import { getInfoBreeds } from './api';
 import './styles.scss';
+
 
 const FunFacts =()=>{
     return (
@@ -14,7 +15,7 @@ const FunFacts =()=>{
                     temperament: ,
                     origin: ,
                     reference_image_id: ,
-                    image: ,
+                    image: {}
                 </p>
             
         </div> 

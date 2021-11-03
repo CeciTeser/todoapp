@@ -35,3 +35,15 @@ export type Breeds ={
     image: Image,
 };
 
+export type Dogs = {
+    id?:string;
+    dogname: string;
+    dogbreedselected: string;
+} 
+
+export type Todo = {
+    title: string;
+    description: string;
+    todostate: string;
+    tododate: string;
+};

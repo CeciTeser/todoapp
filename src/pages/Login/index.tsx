@@ -12,10 +12,6 @@ const Login:FC =()=>{
 
     const [email, setEmail] = useState <string>('')
     const [password, setPassword] = useState <string>('')
-
-    // const [users, setUsers]= useState<User[] | undefined>();
-    // const [userLogged, setUserLogged]= useState<User[] | undefined>()
-
     const { login, userSession } = useAuth();
     const { push } = useHistory();
 
@@ -39,19 +35,15 @@ const Login:FC =()=>{
         } catch (err) {
             console.log(err);
             }
-
-        // const output = users?.filter(Item =>Item.email===email && Item.password===password);
-        // setUserLogged(output)
-
     }
 
-    if (userSession) {
+    if(userSession) {
         localStorage.setItem("user", JSON.stringify(userSession));
-        push("/profile")
+        push("/dashboard")
         }
 
     return (  
-        <Layout page ='Login'>
+        <Layout page ='Login' hideNav>
         <div className='login'>
             <div className="login-form">
                 <form action="" onSubmit={handleSubmit}>

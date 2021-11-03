@@ -13,10 +13,13 @@ function App() {
     <BrowserRouter>
       <Switch>
           {/*<Route path="/contact" component={Contact}/>*/}
+          {/* <Route path="/alerts" component={Alerts}/> 
+          <Route path="/achivements" component={Achivements}/>  */}
+          <Route path="/dashboard" component={Dashboard}/> 
           <Route path="/profile" component={Profile}/> 
           <Route path="/sign-up" component={SignUp}/>
           <Route path="/login" component={Login}/>
-          <Route path="/" component={Dashboard}/>
+          <Route path="/" component={Login}/>
       </Switch>
     </BrowserRouter>
   ); 

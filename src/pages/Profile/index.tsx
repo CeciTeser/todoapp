@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { FunFacts, Layout, ProfileCard } from "../../component";
+import { Layout, ProfileCard } from "../../component";
 import { WithAuth } from "../../hoc";
 
 
@@ -12,7 +12,6 @@ const Profile :FC =()=>{
         <Layout page ='profile'>
             <div className='profile-page'>
             <ProfileCard />   
-            <FunFacts /> 
             </div>
         </Layout>
 

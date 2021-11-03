@@ -19,3 +19,10 @@ const apiBreeds= axios.create({
 });
 
 export { apiBreeds };
+
+const apiBreedsInfo = axios.create ({
+    baseURL: 'https://api.thedogapi.com/v1/breeds/search?'
+
+});
+
+export { apiBreedsInfo };

@@ -4,7 +4,7 @@
 
 .presentation-box{
     width: 17rem;
-    height: 13rem;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,7 +23,7 @@
     p{
         font-size: 0.5rem;
         letter-spacing: 1px;
-        line-height: 20px;
+        line-height: 25px;
         margin: 0.5rem 1.5rem 1rem 1.5rem;
         color: $primary-color;
     }

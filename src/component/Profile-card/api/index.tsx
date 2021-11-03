@@ -1,12 +1,8 @@
 
+import { Dogs } from "../../../types";
 import { api } from "../../../utils";
 
-export type Profile = {
-    dogname: string;
-    dogbreedselected: string;
-}   
-
-const profile= async (query:string, data: Profile) =>{
+const profile= async (query:string, data: Dogs) =>{
 
     await api.post(`/users/${query}/dogs.json`, data);
 

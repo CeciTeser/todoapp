@@ -14,13 +14,16 @@ import './styles.scss';
 const Dashboard:FC =()=>{
 
     const [dogselected, setDogSelected] = useState <string>("");
+    const [updatetable , setUpdateTable] = useState (false)
 
     return (
         <Layout page ='home'>
             <div className='dashboard'>
                 {/* <FunFacts /> */}
-                <ToDoCard choosedog={setDogSelected}/>
-                <Schedule dogs={selecteddogs}/>
+                <ToDoCard dogselected={dogselected} updatetable={updatetable} setDogSelected={setDogSelected} setUpdateTable={setUpdateTable}/>
+            
+                <Schedule dogselected={dogselected} updatetable={updatetable} setDogSelected={setDogSelected}/>
+            
             </div>
         </Layout>
 

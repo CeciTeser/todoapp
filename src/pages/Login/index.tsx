@@ -15,16 +15,6 @@ const Login:FC =()=>{
     const { login, userSession } = useAuth();
     const { push } = useHistory();
 
-    // const getUsers2 = async() =>{
-    //     try{ 
-    //         const response = await getUsers(); 
-    //         setUsers(response);
-            
-    //     } catch(err){
-    //         console.log(err);
-    //     }
-    // }
-    // (!users)? getUsers2():console.log('usuarios' , users);
 
     const handleSubmit = async (e: FormEvent) =>  {
         e.preventDefault();

@@ -11,4 +11,4 @@ const mapToArray = (object: any) => {
     return array;
 };
 
-export {mapToArray}
+export { mapToArray }

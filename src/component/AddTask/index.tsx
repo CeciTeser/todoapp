@@ -1,23 +1,23 @@
-import { Dispatch, FC, FormEvent, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, FC, FormEvent, SetStateAction, useState } from "react";
 import { showDogsList } from "../../api";
 import { useAuth } from "../../hooks";
 import { Dogs} from "../../types";
 import { todocard } from "./api";
-import { mapToArray } from "../../helpers"
-import { Todo } from "../../types"
-import { api } from "../../utils"
+
 
 import './styles.scss';
 
-type Props={
-    choosedog: Dispatch<SetStateAction<string>>
+export type Props={
+    dogselected: string,
+    setDogSelected: Dispatch<SetStateAction<string>>,
+    updatetable:boolean,
+    setUpdateTable: Dispatch<SetStateAction<boolean>>,
+
 }
 
-const ToDoCard:FC <Props> = ({choosedog})=> {
+const ToDoCard:FC <Props>  = ({dogselected, setDogSelected, updatetable, setUpdateTable  })=> {
 
     const [dogsList, setDogsList] = useState < Dogs[] >();
-    // const [dogselected, setDogSelected] = useState <string>("");
-
     const [title, setTitle] = useState<string>("")
     const [description, setDescription] = useState<string>("")
     const [todostate, setToDoState] = useState<string>("")
@@ -34,54 +34,38 @@ const ToDoCard:FC <Props> = ({choosedog})=> {
     
     const handleSubmit =  (e: FormEvent<HTMLElement>) => {
             e.preventDefault();
-            
-        todocard (userSession.id, choosedog, {title, description, todostate, tododate})
+            setUpdateTable(!updatetable)
+            console.log('update1', updatetable)
+        todocard (userSession.id, dogselected, {title, description, todostate, tododate})
+        
+        console.log('add')
+        console.log('update2', updatetable)
     }
 
-    if(choosedog) {        
-        localStorage.setItem("dogselected", JSON.stringify(choosedog));
-        console.log(choosedog)
-    }
-
-
-    // const getToDoList = async (query:string, querytwo:string): Promise<Todo[]> =>{
-    
-    //     const listoftasks = await api.get((`/users/${query}/dogs/${querytwo}/todo.json`))
-    //     console.log('listoftasks', mapToArray (listoftasks.data))
-    //     return mapToArray (listoftasks.data)
-    // } 
-    // getToDoList(userSession.id, dogselected)
-
-    //     const [tasks, setTasks] = useState <Todo[]>(); 
-
-    //     useEffect (()=>{
-    //         if(dogselected !== ''){
-    //             getToDoList(userSession.id, dogselected).then(response=>{
-                    
-    //                 setTasks(response) 
-    //             })
-    //         }
-    //     },[dogselected])
-
-    //     console.log('task', tasks)
+    console.log('update3', updatetable)
 
 return (
         <div className='to-do-card'>
-            <h5 >Hi {userSession.username} </h5>
 
-            <div>
+            <div className='select-dog'>
+
+                <h5 >Hi {userSession.username} </h5>
+                <div>
                     <label htmlFor="dog-todocard">YOUR DOG</label>
                     <select name="dog-todocard" id="dog-todocard" onChange={e =>{ 
-                        choosedog(e.target.value) 
-                    }}>
-                    <option value=" " selected disabled>SELECT YOUR DOG</option>
-                        {dogsList?.map(dogs=>{
-                            return (
-                                <option key={dogs.id} value={dogs.id}>{dogs.dogname}</option>
-                            )
-                        })}
+                        setDogSelected(e.target.value) 
+                        }}>
+                        <option value=" " selected disabled>SELECT YOUR DOG</option>
+                            {dogsList?.map(dogs=>{
+                                return (
+                                    <option key={dogs.id} value={dogs.id}>{dogs.dogname}</option>
+                                )
+                            })}
                     </select>   
                 </div>
+
+            </div>
+
             <form action="" onSubmit={handleSubmit} >
                 <div>
                     <label htmlFor="">TITLE</label>
@@ -136,35 +120,8 @@ return (
                     }}
                 />
             </div>
-                <button type='submit'> ADD </button>
+                <button type='submit'> ADD TASK </button>
             </form>
-                {/* <div>
-                <table className="table">
-                    <h4>TO DO LIST </h4>
-                <thead>
-                    <tr>
-                    <th>TITLE</th>
-                    <th>DESCRIPTION</th>
-                    <th>TO BE DONE ON</th>
-                    <th>STATE</th>
-                    <th>EDIT</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {tasks?.map((task) => {
-                    return (
-                <tr>
-                    <td>{task.title}</td>
-                    <td>{task.description}</td>
-                    <td>{task.tododate}</td>
-                    <td>{task.todostate}</td>
-                    <td> <button type='button'> Edit </button> </td>
-                </tr>
-                    );
-                })}
-                </tbody>
-            </table> 
-                </div> */}
         </div>
 )
 

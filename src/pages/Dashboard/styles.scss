@@ -2,6 +2,13 @@
 
 .dashboard {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-}
+    
+    .to-do-card{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}   

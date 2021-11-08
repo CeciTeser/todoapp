@@ -3,6 +3,7 @@ import SignUp from './pages/SignUp';
 import Profile from './pages/Profile';
 import Dashboard from './pages/Dashboard';
 import { BrowserRouter, Switch, Route,} from 'react-router-dom';
+import EditTasks from './pages/EditTasks';
 
 
 
@@ -16,6 +17,7 @@ function App() {
           {/* <Route path="/alerts" component={Alerts}/> 
           <Route path="/achivements" component={Achivements}/>  */}
           <Route path="/dashboard" component={Dashboard}/> 
+          <Route path="/edit-task" component={EditTasks}/> 
           <Route path="/profile" component={Profile}/> 
           <Route path="/sign-up" component={SignUp}/>
           <Route path="/login" component={Login}/>

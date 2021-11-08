@@ -1,48 +1,39 @@
-import { FC, useEffect, useState } from "react";
-import { mapToArray } from "../../helpers";
+import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks";
 import { Todo } from "../../types";
-import { api } from "../../utils";
+import { getToDoList } from "./api";
 
-const Schedule:FC =()=>{
 
-const [dogselected, setDogSelected]= useState< string >(
-    JSON.parse(localStorage.getItem("dogselected")!)
-);
-    console.log('dogselected', dogselected) 
+import './styles.scss';
 
-    useEffect (()=>{
-                if(dogselected !== ''){
-                    getToDoList(userSession.id, dogselected).then(response=>{
-                        
-                        setTasks(response) 
-                    })
-                }
-            },[dogselected])
-    
+export type Props={
+    dogselected: string,
+    setDogSelected: Dispatch<SetStateAction<string>>,
+    updatetable:boolean, 
+}
+const Schedule:FC <Props> =({dogselected, setDogSelected, updatetable})=>{
 
     const {userSession} = useAuth();
 
-    const getToDoList = async (query:string, querytwo:string): Promise<Todo[]> =>{
-    
-        const listoftasks = await api.get((`/users/${query}/dogs/${querytwo}/todo.json`))
-        console.log('listoftasks', mapToArray (listoftasks.data))
-        return mapToArray (listoftasks.data)
-    } 
-    getToDoList(userSession.id, dogselected)
+    const [tasks, setTasks] = useState <Todo[]>(); 
+    const [idtask, setidTask] = useState <string>();
+    const [deletetask, setDeleteTask] = useState <string>();
 
-        const [tasks, setTasks] = useState <Todo[]>(); 
 
-        useEffect (()=>{
-            if(dogselected !== ''){
-                getToDoList(userSession.id, dogselected).then(response=>{
+    // console.log('idtask' , idtask)
+
+    useEffect (()=>{
+        if(dogselected !== ''){
+            getToDoList(userSession.id, dogselected ).then(response=>{
                     
-                    setTasks(response) 
-                })
-            }
-        },[dogselected, userSession.id])
+                setTasks(response) 
+            })
+            console.log('updatetable', updatetable)
+        }
+    },[dogselected, updatetable])
 
-        console.log('task', tasks)
+    // console.log('tasks', tasks)
 
     return (
         <div>
@@ -54,6 +45,7 @@ const [dogselected, setDogSelected]= useState< string >(
                     <th>TO BE DONE ON</th>
                     <th>STATE</th>
                     <th>EDIT</th>
+                    <th>DELETE</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -64,7 +56,8 @@ const [dogselected, setDogSelected]= useState< string >(
                     <td>{task.description}</td>
                     <td>{task.tododate}</td>
                     <td>{task.todostate}</td>
-                    <td> <button type='button'> Edit </button> </td>
+                    <td> <button onClick={()=>{setidTask(task.id)}}> <Link to="/edit-task"> Edit </Link></button> </td>
+                    <td> <button onClick={() => setDeleteTask(deletetask)}> Delete </button> </td>
                 </tr>
                     );
                 })}

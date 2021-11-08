@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { getUsers } from "../../api"
-import { User } from "../../types";
+import {  User } from "../../types";
 
 
 
@@ -29,6 +29,7 @@ const useAuth = () =>{
 
     return { login, userSession }
 }
+
 
 export { useAuth }
 

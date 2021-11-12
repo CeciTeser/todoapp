@@ -1,9 +1,20 @@
+import { Todo } from "../../../types";
 import { api } from "../../../utils";
 
+type Response={
+    data:Todo, 
+}
 
-const editTask = async (query:string , querytwo:string, dataid:string) => {
-    const response = await api.get(`/users/${query}/dogs/${querytwo}/todo/${dataid}.json`);
-    return response.data;
+const getTaskToEdit = async (user:string , dog:string, task:string): Promise <Todo>=> {
+    const listoftasks:Response = await api.get(`/users/${user}/dogs/${dog}/todo/${task}.json`);
+    console.log('listoftasks',listoftasks.data)
+    return listoftasks.data;
+
 };
 
-export { editTask};
+const editedTask = (user:string , dog:string, task:string , data: Todo) => {
+    api.patch(`/users/${user}/dogs/${dog}/todo/${task}.json`, data);
+
+};
+
+export { getTaskToEdit, editedTask};    

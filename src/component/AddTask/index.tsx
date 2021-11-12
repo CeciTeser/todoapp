@@ -12,10 +12,9 @@ export type Props={
     setDogSelected: Dispatch<SetStateAction<string>>,
     updatetable:boolean,
     setUpdateTable: Dispatch<SetStateAction<boolean>>,
-
 }
 
-const ToDoCard:FC <Props>  = ({dogselected, setDogSelected, updatetable, setUpdateTable  })=> {
+const AddTask:FC <Props>  = ({dogselected, setDogSelected, updatetable, setUpdateTable })=> {
 
     const [dogsList, setDogsList] = useState < Dogs[] >();
     const [title, setTitle] = useState<string>("")
@@ -35,14 +34,18 @@ const ToDoCard:FC <Props>  = ({dogselected, setDogSelected, updatetable, setUpda
     const handleSubmit =  (e: FormEvent<HTMLElement>) => {
             e.preventDefault();
             setUpdateTable(!updatetable)
-            console.log('update1', updatetable)
+            // console.log('update1', updatetable)
         todocard (userSession.id, dogselected, {title, description, todostate, tododate})
         
-        console.log('add')
-        console.log('update2', updatetable)
+        // console.log('add')
+        // console.log('update2', updatetable)
     }
 
-    console.log('update3', updatetable)
+    if(dogselected) {        
+        localStorage.setItem("dogselected", JSON.stringify(dogselected));
+    }
+
+    // console.log('update3', updatetable)
 
 return (
         <div className='to-do-card'>
@@ -76,14 +79,15 @@ return (
                     onChange={(e) => {
                         setTitle(e.target.value);
                     }}/>
-                </div>
-                
+                </div>  
+
                 <div>
                     <label htmlFor="">DESCRIPTION</label>
                     <input 
                     type="text" 
                     id="description"
                     name="description"
+                    
 
                     onChange={(e) => {
                         setDescription(e.target.value);
@@ -128,4 +132,4 @@ return (
 
 }
 
-export { ToDoCard }
+export { AddTask }

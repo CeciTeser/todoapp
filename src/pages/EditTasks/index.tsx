@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { TaskToEdit, Layout } from '../../component';
 import { WithAuth } from '../../hoc';
 
@@ -5,16 +6,16 @@ import { WithAuth } from '../../hoc';
 import './styles.scss';
 
 
+const EditTask:FC = ()=>{
 
-const editTask = ()=>{
 
     return (
         <Layout page ='edittask'>
-            <div>
-            <TaskToEdit /> 
-            </div>
+        
+            <TaskToEdit/> 
+            
         </Layout>
     )
 }
 
-export default WithAuth (editTask);
+export default WithAuth (EditTask);

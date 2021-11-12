@@ -5,7 +5,6 @@ import { WithAuth } from "../../hoc";
 
 import './styles.scss';
 
-
 const Profile :FC =()=>{
  
     return (  

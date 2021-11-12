@@ -3,6 +3,7 @@ import { Layout} from '../../component';
 import { WithAuth } from '../../hoc';
 import { useAuth } from '../../hooks';
 import { Link, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router';
 
 import './styles.scss';
 
@@ -10,10 +11,17 @@ import './styles.scss';
 
 const Login:FC =()=>{
 
+
+    // const {username } = useParams <{ username: string }> ()
+
+    // console.log('PARAMS' , username)
+
+
     const [email, setEmail] = useState <string>('')
     const [password, setPassword] = useState <string>('')
     const { login, userSession } = useAuth();
     const { push } = useHistory();
+
 
 
     const handleSubmit = async (e: FormEvent) =>  {
@@ -30,6 +38,7 @@ const Login:FC =()=>{
     if(userSession) {
         localStorage.setItem("user", JSON.stringify(userSession));
         push("/dashboard")
+        // push({`/dashboard/${userSession.username}`} ,  {userSession.username}`)
         }
 
     return (  

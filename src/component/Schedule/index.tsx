@@ -1,8 +1,8 @@
 import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router";
 import { useAuth } from "../../hooks";
 import { Todo } from "../../types";
-import { getToDoList } from "./api";
+import { deleteTask, getToDoList } from "./api";
 
 
 import './styles.scss';
@@ -10,18 +10,17 @@ import './styles.scss';
 export type Props={
     dogselected: string,
     setDogSelected: Dispatch<SetStateAction<string>>,
-    updatetable:boolean, 
+    updatetable:boolean,
 }
 const Schedule:FC <Props> =({dogselected, setDogSelected, updatetable})=>{
 
     const {userSession} = useAuth();
+    const { push } = useHistory();
 
-    const [tasks, setTasks] = useState <Todo[]>(); 
-    const [idtask, setidTask] = useState <string>();
+    const [tasks, setTasks] = useState <Todo[]>();
+    const [idtask, setidTask] = useState <string>(); 
     const [deletetask, setDeleteTask] = useState <string>();
 
-
-    // console.log('idtask' , idtask)
 
     useEffect (()=>{
         if(dogselected !== ''){
@@ -31,9 +30,29 @@ const Schedule:FC <Props> =({dogselected, setDogSelected, updatetable})=>{
             })
             console.log('updatetable', updatetable)
         }
-    },[dogselected, updatetable])
+    },[dogselected, userSession.id, updatetable])
 
-    // console.log('tasks', tasks)
+
+    if(idtask)  {
+        localStorage.setItem("taskid", JSON.stringify(idtask));
+        push("/edit-task")
+    }
+
+    // const  [taskid]= useState< string >(
+    //     JSON.parse(localStorage.getItem("taskid")!)
+    // );
+
+
+
+    // useEffect (()=>{
+    //     if(idtask === deletetask){
+    //         deleteTask(userSession.id, dogselected, taskid)
+
+    //         setDeleteTask(deletetask)
+    //         console.log('deletetask', deletetask)
+    //     }
+        
+    // },[])
 
     return (
         <div>
@@ -56,8 +75,8 @@ const Schedule:FC <Props> =({dogselected, setDogSelected, updatetable})=>{
                     <td>{task.description}</td>
                     <td>{task.tododate}</td>
                     <td>{task.todostate}</td>
-                    <td> <button onClick={()=>{setidTask(task.id)}}> <Link to="/edit-task"> Edit </Link></button> </td>
-                    <td> <button onClick={() => setDeleteTask(deletetask)}> Delete </button> </td>
+                    <td> <button onClick={()=>{setidTask(task.id)}}>  EDIT </button> </td>
+                    <td> <button onClick={() => setDeleteTask(deletetask)}> DELETE </button> </td>
                 </tr>
                     );
                 })}

@@ -16,6 +16,7 @@ export type Props={
 
 const AddTask:FC <Props>  = ({dogselected, setDogSelected, updatetable, setUpdateTable })=> {
 
+
     const [dogsList, setDogsList] = useState < Dogs[] >();
     const [title, setTitle] = useState<string>("")
     const [description, setDescription] = useState<string>("")
@@ -23,6 +24,7 @@ const AddTask:FC <Props>  = ({dogselected, setDogSelected, updatetable, setUpdat
     const [tododate, setToDoDate] = useState<string>("")
 
     const {userSession} = useAuth();
+    
 
     const showDogs = async ()=>{
         const result = await showDogsList(userSession.id)

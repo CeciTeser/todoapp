@@ -26,6 +26,7 @@ const TaskToEdit:FC   = ()=> {
 
     const {userSession} = useAuth();
     const { push } = useHistory();
+    const { goBack } = useHistory();
     
     const [taskselected, setTaskSelected] = useState <Todo>();
 
@@ -50,11 +51,8 @@ const TaskToEdit:FC   = ()=> {
     
         editedTask (userSession.id, dogselected, taskid, { ...inputs} )
 
-        push("/dashboard");
+        push(`/dashboard/user:${userSession.id}/dogid:${dogselected}`);
 }
-
-
-    // const {user: user2 } = useParams <{user:string}>()
 
     return (
         <div className="edit-task">
@@ -85,6 +83,9 @@ const TaskToEdit:FC   = ()=> {
                 </div>
                 <button type='submit'> EDIT TASK </button>
             </form>
+            
+            <button onClick={goBack}> Volver</button>
+
         </div>
     );
 }

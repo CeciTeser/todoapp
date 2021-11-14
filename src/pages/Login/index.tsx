@@ -3,7 +3,7 @@ import { Layout} from '../../component';
 import { WithAuth } from '../../hoc';
 import { useAuth } from '../../hooks';
 import { Link, useHistory } from 'react-router-dom';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 
 import './styles.scss';
 
@@ -12,9 +12,9 @@ import './styles.scss';
 const Login:FC =()=>{
 
 
-    // const {username } = useParams <{ username: string }> ()
+    // const {user: } = useParams <{ user: string }> ()
 
-    // console.log('PARAMS' , username)
+    // console.log('PARAMS' , user)
 
 
     const [email, setEmail] = useState <string>('')
@@ -37,8 +37,7 @@ const Login:FC =()=>{
 
     if(userSession) {
         localStorage.setItem("user", JSON.stringify(userSession));
-        push("/dashboard")
-        // push({`/dashboard/${userSession.username}`} ,  {userSession.username}`)
+        push(`/dashboard/${userSession.username}`)
         }
 
     return (  

@@ -8,7 +8,7 @@ const getToDoList = async (user:string, dog:string): Promise<Todo[]> =>{
     return mapToArray (listoftasks.data)
 } 
 
-const deleteTask = (user:string , dog:string, task:string) => {
+const deleteTask = (user:string , dog:string, task:string ) => {
     api.delete(`/users/${user}/dogs/${dog}/todo/${task}.json`);
 
 };

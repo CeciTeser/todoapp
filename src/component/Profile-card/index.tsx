@@ -9,6 +9,7 @@ import './styles.scss';
 
 const ProfileCard: FC =()=>{
 
+    
         const [dogname, setDogName] = useState <string>('')
 
 

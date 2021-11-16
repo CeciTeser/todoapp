@@ -1,0 +1,109 @@
+@import '../../../scss/variables.scss';
+
+.profile-card{
+    width: 22rem;
+    height: 32rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    letter-spacing: 1px;
+    color: $primary-color;
+    background-color: $fifth-color;
+    margin-top: 1rem;
+    box-shadow: 8px 11px 11px 0px rgba(169,188,206,0.53);
+
+    form{
+        width: 20rem;
+        height: 30rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        margin-top: 1rem;
+        box-shadow: 8px 11px 11px 0px rgba(169,188,206,0.53);
+        background-color: $third-color;
+        
+        
+        h2{
+            text-align: center;
+            font-size: 1rem;
+            padding: 1rem 0rem 0.5rem 0rem;
+            color: $secondary-color; 
+            
+        }
+
+        h5{
+            font-size: 1rem;
+            
+        }
+
+    
+        div{
+            width:17rem;
+            height: 2rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 0.2rem 0rem 0.3rem 0rem;
+        
+            
+            label{
+                font-size: 0.6rem;
+            }
+            input, select{
+                width: 11rem;
+                height: 1.5rem;
+                font-size: 0.4rem;
+                padding-left: 10px;
+                border:1px solid rgb(223, 232, 247);
+                border-radius: 3px;
+            }
+        }
+
+        h4{
+            font-size: 0.4rem;
+        }
+        .photo{
+            width: 15rem;
+            height: 1.5rem;
+            font-size: 0.5rem;
+            padding-left: 10px;
+        }
+        
+        button{
+            width: 8rem;
+            height: 2rem;
+            font-size: 0.6rem;
+            letter-spacing: 1px;
+            border:none;
+            border-radius: 3px;
+            color: $fourth-color;
+            background-color: $secondary-color;
+        }
+        button:hover{
+            color: $secondary-color;
+            background-color:$fourth-color ;
+        }
+    
+    }
+    p{
+        font-size: 0.5rem;
+        font-weight: 700;
+        margin-top: 1rem;
+        text-align: center;
+    }
+    .dog-name-list{
+        width: 19rem;
+        font-size: 1rem;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        li{
+            font-size: 0.5rem;
+        }
+        
+    }  
+}

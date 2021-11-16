@@ -3,8 +3,6 @@ import { TaskToEdit, Layout } from '../../component';
 import { WithAuth } from '../../hoc';
 
 
-import './styles.scss';
-
 
 const EditTask:FC = ()=>{
 

@@ -49,7 +49,7 @@ export type Todo = {
     description: string;
     todostate: string;
     tododate: string;
-    category?: string, 
+    category: string, 
 };
 
 export type Category = {

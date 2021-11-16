@@ -1,7 +1,7 @@
 import { FC, FormEvent, useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { editedTask, getTaskToEdit } from "./api";
-import { Todo } from "../../../types";
+import { editedTask, getCategories, getTaskToEdit } from "./api";
+import { Category, Todo } from "../../../types";
 
 import './styles.scss';
 import { AuthContext } from "../../../context";
@@ -11,10 +11,12 @@ const defaultValues: Todo={
     description: '',
     todostate: ' ',
     tododate: ' ',
+    category:'',
 }
 
 const TaskToEdit:FC   = ()=> {
     
+    const [categorylist, setCategoryList] = useState<Category[]>()
 
     const [dogselected] = useState< string >(
         JSON.parse(localStorage.getItem("dogselected")!)
@@ -32,6 +34,11 @@ const TaskToEdit:FC   = ()=> {
 
     const [inputs, setInputs] = useState (defaultValues);
 
+    useEffect(() => {
+        getCategories(currentUser?.id).then((response) => {
+            setCategoryList(response);
+        });
+    },);
 
     useEffect (()=>{
         
@@ -75,6 +82,22 @@ const TaskToEdit:FC   = ()=> {
                         <option value="pending">Pending</option>
                         <option value="delayed">Delayed</option>
                         <option value="canceled">Canceled</option>
+                        </select>
+                </div>
+                <div>
+                    <label htmlFor="category"></label>
+                        <select 
+                        name="category"
+                        value={inputs.category} 
+                        placeholder={taskselected?.category}
+                        onChange={e=>{setInputs({...inputs, category:e.target.value} )} }
+                        >
+                        <option value={dogselected} selected disabled>SELECT YOUR CATEGORY</option>
+                            {categorylist?.map(item=>{
+                                return (
+                                    <option key={item.id} value={item.category}>{item.category}</option>
+                                )
+                            })}
                         </select>
                 </div>
                 <button type='submit'> EDIT TASK </button>

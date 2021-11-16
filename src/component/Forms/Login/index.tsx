@@ -19,10 +19,6 @@ import './styles.scss';
 
 const Login:FC =()=>{
 
-    // const [inputs, setInputs] = useState(defaultValues);
-
-    // const [email, setEmail] = useState <string>('')
-    // const [password, setPassword] = useState <string>('')
     const { login } = useAuth();
 
     const {

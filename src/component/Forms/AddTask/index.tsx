@@ -23,7 +23,7 @@ const AddTask:FC <Props>  = ({dogselected, setDogSelected, updatetable, setUpdat
     const [todostate, setToDoState] = useState<string>("")
     const [tododate, setToDoDate] = useState<string>("")
     const [categorylist, setCategoryList] = useState<Category[]>()
-    const [categoryselected, setCategorySelected] =  useState<string>("")
+    const [category, setCategory] =  useState<string>("")
 
     const {currentUser } = useContext(AuthContext);
     
@@ -46,7 +46,7 @@ const AddTask:FC <Props>  = ({dogselected, setDogSelected, updatetable, setUpdat
             e.preventDefault();
             setUpdateTable(!updatetable)
             // console.log('update1', updatetable)
-        todocard (currentUser?.id, dogselected, {title, description, todostate, tododate})
+        todocard (currentUser?.id, dogselected, {title, description, todostate, tododate, category})
         
         // console.log('add')
         // console.log('update2', updatetable)
@@ -55,7 +55,7 @@ const AddTask:FC <Props>  = ({dogselected, setDogSelected, updatetable, setUpdat
     if(dogselected) {        
         localStorage.setItem("dogselected", JSON.stringify(dogselected));
     }
-    console.log (categoryselected)
+
 
     // console.log('update3', updatetable)
 
@@ -99,8 +99,6 @@ return (
                     type="text" 
                     id="description"
                     name="description"
-                    
-
                     onChange={(e) => {
                         setDescription(e.target.value);
                     }}/>
@@ -141,13 +139,13 @@ return (
                     id="category"
                     name="category"
                     onChange={(e) => {
-                        setCategorySelected(e.target.value);
+                        setCategory(e.target.value);
                     }}
                 >
                 <option value={dogselected} selected disabled>SELECT YOUR CATEGORY</option>
                             {categorylist?.map(item=>{
                                 return (
-                                    <option key={item.id} value={item.id}>{item.category}</option>
+                                    <option key={item.id} value={item.category}>{item.category}</option>
                                 )
                             })}
                 </select>

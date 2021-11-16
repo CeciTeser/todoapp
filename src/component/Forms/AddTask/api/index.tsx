@@ -10,7 +10,7 @@ const todocard = async (user:string|undefined, dog:string,  data: Todo) =>{
 }
 
 const getCategories = async (user:string|undefined) => {
-    const response = await api.get(`/users/${user}/dogs/todo/categories.json`);
+    const response = await api.get(`/users/${user}/categories.json`);
     return mapToArray(response.data);
 };
 

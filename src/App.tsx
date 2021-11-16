@@ -1,5 +1,5 @@
-import Login from './pages/Login';
-import {SignUp} from './pages/SignUp';
+import {LoginPage} from './pages/LoginPage'
+import {SignUpPage} from './pages/SignUpPage';
 import Profile from './pages/Profile';
 import Dashboard from './pages/Dashboard';
 import { BrowserRouter, Switch, Route,} from 'react-router-dom';
@@ -21,8 +21,8 @@ function App() {
             <Route path="/dashboard" component={Dashboard}/> 
             <Route path="/edit-task" component={EditTasks}/> 
             <Route path="/profile" component={Profile}/> 
-            <Route path="/sign-up" component={SignUp}/>
-            <Route path="/login" component={Login}/>
+            <Route path="/sign-up" component={SignUpPage}/>
+            <Route path="/login" component={LoginPage}/>
             <Route path="/" component={Dashboard}/>
         </Switch>
       </BrowserRouter>

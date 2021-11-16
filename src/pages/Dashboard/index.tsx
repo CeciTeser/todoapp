@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import { AddTask } from '../../component';
-import { Layout } from '../../component/Layout';
-import { Schedule } from '../../component/Schedule';
+import { Layout } from '../../component/Layout/Layout-pages';
+import { Schedule } from '../../component/Layout/Schedule';
 import { WithAuth } from '../../hoc';
 
 import './styles.scss';

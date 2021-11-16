@@ -1,0 +1,79 @@
+@import '../../../scss/variables.scss';
+
+.login{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.login-form{ 
+    width: 17rem;
+    height: 25rem;
+    display: flex;
+    justify-content: center;        
+    align-items: center;
+    margin-top: 2rem;
+    color: $primary-color;
+    background-color: $fifth-color;
+    box-shadow: 8px 11px 11px 0px rgba(169,188,206,0.53);
+
+    h2{
+        text-align: center;
+        font-size: 1rem;
+        color: $secondary-color;    
+    }
+    div{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    label{
+        font-size: 0.6rem;
+        margin: 1.5rem 0rem 1rem 0rem;
+    }
+    input{
+        width: 10rem;
+        height: 1.5rem;
+        font-size: 0.5rem;
+        padding-left: 10px;
+        border:1px solid rgb(223, 232, 247);
+        border-radius: 3px; 
+
+    }
+
+    button{
+        width: 5rem;
+        height: 2rem;
+        font-size: 0.6rem;
+        letter-spacing: 1px;
+        border:none;
+        border-radius: 3px;
+        color: $secondary-color;
+        background-color: $fourth-color;
+        margin: 2rem 0rem 0rem 2rem;
+    }
+    button:hover{
+        color: $fourth-color;
+        background-color: $secondary-color;
+    }
+    p{
+        font-size: 0.5rem;
+        margin: 3rem 1rem 0rem 1rem;
+
+        a{
+            text-decoration: none;
+            color: $secondary-color;
+        }
+        a:hover{
+            color: $secondary-color;
+            background-color: $fourth-color;
+        }
+    }
+};
+
+.test{
+    font-size: 0.7rem;
+    color: $secondary-color;
+    margin: 3rem 1rem 0rem 1rem;
+}

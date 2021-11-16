@@ -4,7 +4,7 @@ import { editedTask, getTaskToEdit } from "./api";
 import { Todo } from "../../../types";
 
 import './styles.scss';
-import { AuthContext } from "../../../Context";
+import { AuthContext } from "../../../context";
 
 const defaultValues: Todo={
     title: '',

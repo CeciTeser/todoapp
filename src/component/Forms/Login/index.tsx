@@ -1,26 +1,43 @@
 import { FC, FormEvent, useState } from 'react';
 import { useAuth } from '../../../hooks';
 import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import {yupResolver} from '@hookform/resolvers/yup';
+import {defaultValues} from './default-values';
+import {validationSchema} from './validation-schema'
 
 
 import './styles.scss';
 
 
 
+// const defaultValues = {
+//     email: "",
+//     password: "",
+// };
+
 
 const Login:FC =()=>{
 
-    const [email, setEmail] = useState <string>('')
-    const [password, setPassword] = useState <string>('')
+    // const [inputs, setInputs] = useState(defaultValues);
+
+    // const [email, setEmail] = useState <string>('')
+    // const [password, setPassword] = useState <string>('')
     const { login } = useAuth();
 
+    const {
+        register, 
+        formState: {errors},
+        handleSubmit
+        } = useForm <{ email:string; password: string}> ({
+        resolver: yupResolver (validationSchema),
+        defaultValues,
+    })
 
-    const handleSubmit = async (e: FormEvent) =>  {
-        e.preventDefault();
-
+    const onSubmit = async (data: { email:string; password: string}) =>  {
 
         try {
-            await login(email, password);
+            await login(data.email, data.password);
         } catch (err) {
             console.log(err);
             }
@@ -31,27 +48,33 @@ const Login:FC =()=>{
 
         <div className='login'>
             <div className="login-form">
-                <form action="" onSubmit={handleSubmit}>
+                <form action="" onSubmit={handleSubmit (onSubmit)}>
                     <h2>LOGIN</h2>
                     <div>
                         <label htmlFor="email">EMAIL: </label>
                         <input 
-                        id="email" 
-                        type="email" 
-                        name="email" 
-                        placeholder="ENTER YOUR EMAIL" 
-                        onChange={(e)=>{setEmail(e.target.value)}} 
-                        required />
+                            id="email" 
+                            type="email"    
+                            // value={inputs.email} 
+                            placeholder="ENTER YOUR EMAIL" 
+                            // onChange={(e) => setInputs({ ...inputs, email: e.target.value })}
+                            required
+                            {...register('email')}
+                        />
+                        {errors.email?.message}
                     </div>
                     <div>
                         <label htmlFor="password">PASSWORD: </label>
                         <input 
-                        id="password" 
-                        type="password" 
-                        name="password" 
-                        placeholder="ENTER YOUR PASSWORD" 
-                        onChange={(e)=>{setPassword(e.target.value)}} 
-                        required/>
+                            id="password" 
+                            type="password" 
+                            placeholder="ENTER YOUR PASSWORD" 
+                            // value={inputs.password}
+                            // onChange={(e) => setInputs({ ...inputs, password: e.target.value })}
+                            required 
+                            {...register('password')}  
+                        />
+                        {errors.password?.message}
                     </div>
                     <button type="submit">LOGIN</button>
                     <p>Don´t have an account? <Link to="/sign-up">SIGN-UP</Link></p>

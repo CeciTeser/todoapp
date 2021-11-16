@@ -1,8 +1,8 @@
-import { Dispatch, FC, FormEvent, SetStateAction, useContext, useState } from "react";
+import { Dispatch, FC, FormEvent, SetStateAction, useContext, useEffect, useState } from "react";
 import { showDogsList } from "../../../api";
-import { AuthContext } from "../../../Context";
-import { Dogs} from "../../../types";
-import { todocard } from "./api";
+import { AuthContext } from "../../../context";
+import { Category, Dogs} from "../../../types";
+import { getCategories, todocard } from "./api";
 
 
 import './styles.scss';
@@ -22,6 +22,8 @@ const AddTask:FC <Props>  = ({dogselected, setDogSelected, updatetable, setUpdat
     const [description, setDescription] = useState<string>("")
     const [todostate, setToDoState] = useState<string>("")
     const [tododate, setToDoDate] = useState<string>("")
+    const [categorylist, setCategoryList] = useState<Category[]>()
+    const [categoryselected, setCategorySelected] =  useState<string>("")
 
     const {currentUser } = useContext(AuthContext);
     
@@ -32,6 +34,13 @@ const AddTask:FC <Props>  = ({dogselected, setDogSelected, updatetable, setUpdat
     }
         
     (!dogsList)? showDogs(): console.log('dogs' , dogsList);
+    
+
+    useEffect(() => {
+        getCategories(currentUser?.id).then((response) => {
+            setCategoryList(response);
+        });
+    },);
     
     const handleSubmit =  (e: FormEvent<HTMLElement>) => {
             e.preventDefault();
@@ -46,6 +55,7 @@ const AddTask:FC <Props>  = ({dogselected, setDogSelected, updatetable, setUpdat
     if(dogselected) {        
         localStorage.setItem("dogselected", JSON.stringify(dogselected));
     }
+    console.log (categoryselected)
 
     // console.log('update3', updatetable)
 
@@ -60,7 +70,7 @@ return (
                     <select name="dog-todocard" id="dog-todocard" onChange={e =>{ 
                         setDogSelected(e.target.value) 
                         }}>
-                        <option value=" " selected disabled>SELECT YOUR DOG</option>
+                        <option value={dogselected} selected disabled>SELECT YOUR DOG</option>
                             {dogsList?.map(dogs=>{
                                 return (
                                     <option key={dogs.id} value={dogs.id}>{dogs.dogname}</option>
@@ -73,7 +83,7 @@ return (
 
             <form action="" onSubmit={handleSubmit} >
                 <div>
-                    <label htmlFor="">TITLE</label>
+                    <label htmlFor="title">TITLE</label>
                     <input 
                     type="text" 
                     id="title"
@@ -110,7 +120,6 @@ return (
                 <option value="inprogress">In progress</option>
                 <option value="done">Done</option>
                 <option value="pending">Pending</option>
-                <option value="delayed">Delayed</option>
                 <option value="canceled">Canceled</option>
                 </select>
             </div>
@@ -125,6 +134,23 @@ return (
                     setToDoDate(e.target.value);
                     }}
                 />
+            </div>
+            <div>
+                <label htmlFor="category">CATEGORY</label>
+                <select 
+                    id="category"
+                    name="category"
+                    onChange={(e) => {
+                        setCategorySelected(e.target.value);
+                    }}
+                >
+                <option value={dogselected} selected disabled>SELECT YOUR CATEGORY</option>
+                            {categorylist?.map(item=>{
+                                return (
+                                    <option key={item.id} value={item.id}>{item.category}</option>
+                                )
+                            })}
+                </select>
             </div>
                 <button type='submit'> ADD TASK </button>
             </form>

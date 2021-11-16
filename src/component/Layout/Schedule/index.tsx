@@ -1,6 +1,6 @@
 import { Dispatch, FC, SetStateAction, useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import { AuthContext } from "../../../Context";
+import { AuthContext } from "../../../context";
 import { Todo } from "../../../types";
 import { deleteTask, getToDoList } from "./api";
 
@@ -49,6 +49,7 @@ const Schedule:FC <Props> =({dogselected, setDogSelected, updatetable})=>{
                     <th>DESCRIPTION</th>
                     <th>TO BE DONE ON</th>
                     <th>STATE</th>
+                    <th>CATEGORY</th>
                     <th>EDIT</th>
                     <th>DELETE</th>
                     </tr>
@@ -61,13 +62,14 @@ const Schedule:FC <Props> =({dogselected, setDogSelected, updatetable})=>{
                     <td>{task.description}</td>
                     <td>{task.tododate}</td>
                     <td>{task.todostate}</td>
-                    <td> <button onClick={()=>setidTask(task.id)}>  EDIT </button> </td>
+                    <td>{task.category}</td>
+                    <td> <button onClick={() => setidTask(task.id)}>  EDIT </button> </td>
                     <td> <button onClick={() => deleteTask(currentUser?.id, dogselected, `${task.id}`)}> DELETE </button> </td>
                 </tr>
                     );
                 })}
                 </tbody>
-            </table> 
+            </table>
         </div> 
     )
 

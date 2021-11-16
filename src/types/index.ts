@@ -49,6 +49,12 @@ export type Todo = {
     description: string;
     todostate: string;
     tododate: string;
+    category?: string, 
 };
+
+export type Category = {
+    id?: string,
+    category?: string,
+}
 
 

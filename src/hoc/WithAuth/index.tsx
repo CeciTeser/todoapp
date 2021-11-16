@@ -13,8 +13,6 @@ const WithAuth: withAuthenticationFn = (Component) => {
 
         const { userSession } = useAuth();
 
-        console.log(userSession);
-
         if (userSession === undefined) return <Loading />;
 
         if (userSession && publicRoutes.includes(location.pathname)) push("/");

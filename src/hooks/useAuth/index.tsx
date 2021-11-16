@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { AuthContext } from "../../Context";
+import { AuthContext } from "../../context";
 import { mapToArray } from "../../helpers";
 import { User } from "../../types";
 import { api } from "../../utils";

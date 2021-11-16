@@ -1,32 +1,22 @@
-
 @import '../../../scss/variables.scss';
 
-.to-do-card{
+.categories{
     display: flex;
     flex-direction: column;
-    letter-spacing: 1px;
-    color: $primary-color;
-    margin-top: 1rem;
+    justify-content: center;
+    align-items: center;
 
-
-    .select-dog{
-        h5{
-            font-size: 1.5rem; 
-            text-align: center;
-        }
-        select{
-            width: 8rem;
-            height: 1.5rem;
-            font-size: 0.5rem;
-            letter-spacing: 1px;
-            color: $primary-color;
-            margin: 1rem 0rem 0rem 1rem;
-        }
-    }   
-
+    h5{
+        font-size: 1.5rem;
+        font-weight: lighter; 
+        text-align: center; 
+        color: $primary-color;
+        margin-top: 1.5rem;
+    }
     form{
+
         width: 100vw;
-        height: 18rem;
+        height: 10rem;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
@@ -35,7 +25,7 @@
         box-shadow: 8px 11px 11px 0px rgba(169,188,206,0.53);
         background-color: $third-color;
 
-        
+    
         div{
             width:18rem;
             height: 2rem;
@@ -49,6 +39,7 @@
         
             label{
                 font-size: 0.6rem;
+                color: $secondary-color;
             
             }
             input, select{
@@ -62,7 +53,7 @@
             }
         }
         button{
-            width: 5rem;
+            width: 15rem;
             height: 2rem;
             font-size: 0.6rem;
             letter-spacing: 1px;
@@ -75,6 +66,45 @@
             color: $fourth-color;
             background-color: $secondary-color;
         }
-    
     }
+
+    table{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        width: 20rem;
+        height: 100%;
+        margin-top: 2rem;
+        border: 0.5px solid rgba(169,188,206,0.53);
+        box-shadow: 8px 11px 11px 0px rgba(169,188,206,0.53);
+        background-color: rgb(238, 245, 245);
+    
+        th{
+            font-size: 0.7rem;
+            color: $secondary-color;
+            padding: 1rem 0rem 1rem 0rem;
+        }
+    
+        td{
+            font-size: 0.6rem;
+            color: $primary-color;
+            padding: 0.5rem 0rem 0.5rem 0rem;
+        }
+    
+        button{
+            font-size: 0.5rem;
+            letter-spacing: 1px;
+            border:none;
+            border-radius: 3px;
+            margin-left: 1rem;
+            background-color: $fourth-color;
+            color: $secondary-color;
+        }
+        button:hover{   
+            background-color: $secondary-color;
+            color: $fourth-color;
+        }
+    }
+
 }

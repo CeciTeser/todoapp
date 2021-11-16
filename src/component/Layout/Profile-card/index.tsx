@@ -2,7 +2,7 @@ import { FC, FormEvent, useContext, useState } from 'react';
 import {profile} from './api';
 import { getBreeds, showDogsList} from '../../../api';
 import { Breeds, Dogs} from '../../../types';
-import { AuthContext } from '../../../Context';
+import { AuthContext } from '../../../context';
 
 
 import './styles.scss';

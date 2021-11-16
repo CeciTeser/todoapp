@@ -6,7 +6,6 @@ import { WithAuth } from '../../hoc';
 
 const EditTask:FC = ()=>{
 
-
     return (
     
         <Layout page ='edittask'>
@@ -15,6 +14,6 @@ const EditTask:FC = ()=>{
 
         </Layout>
     )
-}
+};
 
 export default WithAuth (EditTask);

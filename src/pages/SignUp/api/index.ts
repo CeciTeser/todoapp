@@ -1,7 +1,7 @@
 import { User } from "../../../types";
 import { api } from "../../../utils";
 
-type Payload = Omit <User, 'id' | 'dogname'| 'dogbreedselected'>
+type Payload = Omit <User, 'id' | 'dogname'| 'dogbreedselected'| 'sessionToken'>
 
 
 const signUp = async (data: Payload) =>{

@@ -6,7 +6,7 @@ import { WithAuth } from "../../hoc";
 import './styles.scss';
 
 const Profile :FC =()=>{
- 
+
     return (  
         <Layout page ='profile'>
             <div className='profile-page'>
@@ -17,4 +17,4 @@ const Profile :FC =()=>{
         )
 }
 
-export default WithAuth(Profile); 
+export default WithAuth(Profile) ; 

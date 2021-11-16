@@ -1,10 +1,12 @@
 export type User = {
-    id: string;
+    id?: string;
     password: string, 
     email: string, 
     username: string;
     dogname: string;
     dogbreedselected: string;
+    sessionToken: string;
+
 };
 
 export type Image = {

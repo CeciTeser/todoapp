@@ -1,15 +1,17 @@
-import { FC, FormEvent, useState } from 'react';
+import { FC, FormEvent, useContext, useState } from 'react';
 import {profile} from './api';
 import { getBreeds, showDogsList} from '../../api';
 import { Breeds, Dogs} from '../../types';
-import { useAuth} from '../../hooks';
+import { AuthContext } from '../../Context';
 
 
 import './styles.scss';
 
+
+
 const ProfileCard: FC =()=>{
 
-    
+
         const [dogname, setDogName] = useState <string>('')
 
 
@@ -21,7 +23,7 @@ const ProfileCard: FC =()=>{
 
 
 
-        const {userSession } = useAuth();
+        const {currentUser } = useContext(AuthContext);
 
         const showBreeds = async ()=>{
             const output = await getBreeds();
@@ -31,7 +33,7 @@ const ProfileCard: FC =()=>{
             (!dogbreed)? showBreeds(): console.log('breeds' , dogbreed);
             
             const showDogs = async ()=>{
-                const result = await showDogsList(userSession.id)
+                const result = await showDogsList(currentUser?.id)
                 setDogsList(result) 
             }
 
@@ -40,16 +42,17 @@ const ProfileCard: FC =()=>{
         const handleSubmit =  (e: FormEvent<HTMLElement>) => {
             e.preventDefault();
 
-            profile (userSession.id, {dogname, dogbreedselected})
+            profile (currentUser?.id, {dogname, dogbreedselected})
             
-        }
+
+    }
 
 
     return (
             <div className="profile-card">
                 <form action="" onSubmit={handleSubmit}>
                     
-                    <h5 >WELCOME {userSession.username} </h5>
+                    <h5 >WELCOME {currentUser?.username} </h5>
 
                     <h4>PLEASE ADD YOUR DOG´S NAME AND BREED</h4>
 
@@ -79,8 +82,6 @@ const ProfileCard: FC =()=>{
                                 })}
                         </select>   
                     </div>
-
-                    <input type="file" className='photo' />
 
                     <button type="submit">OK</button>
 

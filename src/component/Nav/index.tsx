@@ -1,12 +1,14 @@
 import { FC } from "react"
 import { Link } from 'react-router-dom';
+import { useAuth } from "../../hooks";
 
 import './styles.scss';
 
 
 
-
 const Nav: FC = () => {
+
+    const { logout } = useAuth();
 
     return (
     
@@ -19,11 +21,10 @@ const Nav: FC = () => {
                     <Link to="/profile">PROFILE</Link>
                 </li>
                 <li>
-                    <Link to="/achievements">ACHIVEMENTS</Link>
+                    <Link to="/categories">CATEGORIES</Link>
                 </li>
-                <li>
-                    <Link to="/alerts">ALERTS</Link>
-                </li>
+
+                <button onClick={logout}>LOGOUT</button>
             </ul>
         </nav>
     

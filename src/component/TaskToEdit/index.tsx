@@ -1,10 +1,10 @@
-import { FC, FormEvent, useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { FC, FormEvent, useContext, useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { editedTask, getTaskToEdit } from "./api";
-import { useAuth } from "../../hooks";
 import { Todo } from "../../types";
 
 import './styles.scss';
+import { AuthContext } from "../../Context";
 
 const defaultValues: Todo={
     title: '',
@@ -24,7 +24,7 @@ const TaskToEdit:FC   = ()=> {
         JSON.parse(localStorage.getItem("taskid")!)
     );
 
-    const {userSession} = useAuth();
+    const {currentUser} = useContext(AuthContext);
     const { push } = useHistory();
     const { goBack } = useHistory();
     
@@ -35,24 +35,20 @@ const TaskToEdit:FC   = ()=> {
 
     useEffect (()=>{
         
-            getTaskToEdit(userSession.id, dogselected, taskid ).then(response=>{
+            getTaskToEdit(currentUser?.id, dogselected, taskid ).then(response=>{
                 
                 setTaskSelected(response) 
             })
     },[])
 
-    // console.log('taskselected', taskselected)
-    // console.log('inputs', inputs)
-
 
     const handleSubmit =  (e: FormEvent<HTMLElement>) => {
         e.preventDefault();
         
-    
-        editedTask (userSession.id, dogselected, taskid, { ...inputs} )
+        editedTask (currentUser?.id, dogselected, taskid, { ...inputs} )
 
-        push(`/dashboard/user:${userSession.id}/dogid:${dogselected}`);
-}
+        push(`/dashboard/user:${currentUser?.id}/dogid:${dogselected}`);
+    }
 
     return (
         <div className="edit-task">
@@ -83,8 +79,9 @@ const TaskToEdit:FC   = ()=> {
                 </div>
                 <button type='submit'> EDIT TASK </button>
             </form>
-            
-            <button onClick={goBack}> Volver</button>
+            <div>
+            <button onClick={goBack}> Volver </button>
+            </div>
 
         </div>
     );

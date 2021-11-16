@@ -1,6 +1,6 @@
-import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, FC, SetStateAction, useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import { useAuth } from "../../hooks";
+import { AuthContext } from "../../Context";
 import { Todo } from "../../types";
 import { deleteTask, getToDoList } from "./api";
 
@@ -15,7 +15,8 @@ export type Props={
 }
 const Schedule:FC <Props> =({dogselected, setDogSelected, updatetable})=>{
 
-    const {userSession} = useAuth();
+    const {currentUser } = useContext(AuthContext);
+
     const { push } = useHistory();
     
 
@@ -24,19 +25,19 @@ const Schedule:FC <Props> =({dogselected, setDogSelected, updatetable})=>{
 
     useEffect (()=>{
         if(dogselected !== ''){
-            getToDoList(userSession.id, dogselected ).then(response=>{
+            getToDoList(currentUser?.id, dogselected ).then(response=>{
                     
                 setTasks(response) 
                 
             })
         }
-    },[dogselected, userSession.id, updatetable])
+    },[dogselected, currentUser?.id, updatetable])
 
 //  
 
     if(idtask)  {
         localStorage.setItem("taskid", JSON.stringify(idtask));
-        push(`/edit-task/user:${userSession.username}/dogid:${dogselected}/taskid:${idtask}`)
+        push(`/edit-task/user:${currentUser?.username}/dogid:${dogselected}/taskid:${idtask}`)
     }
 
     return (
@@ -61,7 +62,7 @@ const Schedule:FC <Props> =({dogselected, setDogSelected, updatetable})=>{
                     <td>{task.tododate}</td>
                     <td>{task.todostate}</td>
                     <td> <button onClick={()=>setidTask(task.id)}>  EDIT </button> </td>
-                    <td> <button onClick={() => deleteTask(userSession.id, dogselected, `${task.id}`)}> DELETE </button> </td>
+                    <td> <button onClick={() => deleteTask(currentUser?.id, dogselected, `${task.id}`)}> DELETE </button> </td>
                 </tr>
                     );
                 })}

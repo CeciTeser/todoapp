@@ -1,6 +1,6 @@
-import { Dispatch, FC, FormEvent, SetStateAction, useState } from "react";
+import { Dispatch, FC, FormEvent, SetStateAction, useContext, useState } from "react";
 import { showDogsList } from "../../api";
-import { useAuth } from "../../hooks";
+import { AuthContext } from "../../Context";
 import { Dogs} from "../../types";
 import { todocard } from "./api";
 
@@ -23,11 +23,11 @@ const AddTask:FC <Props>  = ({dogselected, setDogSelected, updatetable, setUpdat
     const [todostate, setToDoState] = useState<string>("")
     const [tododate, setToDoDate] = useState<string>("")
 
-    const {userSession} = useAuth();
+    const {currentUser } = useContext(AuthContext);
     
 
     const showDogs = async ()=>{
-        const result = await showDogsList(userSession.id)
+        const result = await showDogsList(currentUser?.id)
         setDogsList(result) 
     }
         
@@ -37,7 +37,7 @@ const AddTask:FC <Props>  = ({dogselected, setDogSelected, updatetable, setUpdat
             e.preventDefault();
             setUpdateTable(!updatetable)
             // console.log('update1', updatetable)
-        todocard (userSession.id, dogselected, {title, description, todostate, tododate})
+        todocard (currentUser?.id, dogselected, {title, description, todostate, tododate})
         
         // console.log('add')
         // console.log('update2', updatetable)
@@ -54,7 +54,7 @@ return (
 
             <div className='select-dog'>
 
-                <h5 >Hi {userSession.username} </h5>
+                <h5 >Hi {currentUser?.username} </h5>
                 <div>
                     <label htmlFor="dog-todocard">YOUR DOG</label>
                     <select name="dog-todocard" id="dog-todocard" onChange={e =>{ 

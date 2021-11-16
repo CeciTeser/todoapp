@@ -1,48 +1,31 @@
-import {FC} from 'react';
-import {useHistory} from 'react-router-dom';
-import { useAuth } from '../../hooks';
+import { FC } from "react";
+import { useHistory } from "react-router-dom";
+import { Loading } from "../../component/Common";
+import { useAuth } from "../../hooks/useAuth";
 
+const publicRoutes = ["/login", "/sign-up"];
 
-const isAuthenticated = true;
+type withAuthenticationFn = (Component: FC) => FC;
 
-type WithAuthenticatedFc = (Component: FC) => FC;
+const WithAuth: withAuthenticationFn = (Component) => {
+    const Authenticated: FC = (): JSX.Element | null => {
+        const { push, location } = useHistory();
 
-const WithAuth: WithAuthenticatedFc = (Component) => {
+        const { userSession } = useAuth();
 
-    const Authenticated: FC = (): JSX.Element | null =>{
-        const { push } = useHistory();
-        
-        return isAuthenticated ? <Component /> : null;
+        console.log(userSession);
 
-    }
+        if (userSession === undefined) return <Loading />;
 
-    return  Authenticated;
-}
+        if (userSession && publicRoutes.includes(location.pathname)) push("/");
 
-// const publicRoutes = ["/login", "/sign-up"];
+        if (userSession === false && !publicRoutes.includes(location.pathname))
+        push("/login");
 
-// type withAuthenticationFn = (Component: FC) => FC;
+        return <Component />;
+    };
 
-// const WithAuth: withAuthenticationFn = (Component) => {
-//   const Authenticated: FC = (): JSX.Element | null => {
-//     const { push, location } = useHistory();
-
-//     const { hasUserLoggedIn } = useAuth ();
-
-//     console.log(hasUserLoggedIn);
-
-//     if (hasUserLoggedIn === undefined) return <Loading />;
-
-//     if (hasUserLoggedIn && publicRoutes.includes(location.pathname)) push("/");
-
-//     if (hasUserLoggedIn === false && !publicRoutes.includes(location.pathname))
-//       push("/login");
-
-//     return <Component />;
-//   };
-
-//   return Authenticated;
-// };
+    return Authenticated;
+};
 
 export { WithAuth };
-

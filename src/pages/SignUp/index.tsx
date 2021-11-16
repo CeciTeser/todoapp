@@ -3,9 +3,10 @@ import { FormEvent,  FC, useState } from 'react';
 import { signUp } from './api';
 import { Layout, Presentation} from '../../component';
 import { WithAuth } from '../../hoc';
+import { useHistory } from 'react-router';
 
 import './styles.scss';
-import { useHistory } from 'react-router';
+
 
 
 
@@ -66,4 +67,4 @@ const SignUp: FC = ()=>{
 }
 
 
-export default WithAuth(SignUp);
+export {SignUp};

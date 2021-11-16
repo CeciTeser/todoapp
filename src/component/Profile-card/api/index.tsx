@@ -2,9 +2,9 @@
 import { Dogs } from "../../../types";
 import { api } from "../../../utils";
 
-const profile= async (query:string, data: Dogs) =>{
+const profile= async (user:string|undefined, data: Dogs) =>{
 
-    await api.post(`/users/${query}/dogs.json`, data);
+    await api.post(`/users/${user}/dogs.json`, data);
 
 }
 

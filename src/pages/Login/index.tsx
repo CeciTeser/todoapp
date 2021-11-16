@@ -2,26 +2,19 @@ import { FC, FormEvent, useState } from 'react';
 import { Layout} from '../../component';
 import { WithAuth } from '../../hoc';
 import { useAuth } from '../../hooks';
-import { Link, useHistory } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 
 import './styles.scss';
 
 
 
+
 const Login:FC =()=>{
-
-
-    // const {user: } = useParams <{ user: string }> ()
-
-    // console.log('PARAMS' , user)
-
 
     const [email, setEmail] = useState <string>('')
     const [password, setPassword] = useState <string>('')
-    const { login, userSession } = useAuth();
-    const { push } = useHistory();
-
+    const { login } = useAuth();
 
 
     const handleSubmit = async (e: FormEvent) =>  {
@@ -35,10 +28,6 @@ const Login:FC =()=>{
             }
     }
 
-    if(userSession) {
-        localStorage.setItem("user", JSON.stringify(userSession));
-        push(`/dashboard/${userSession.username}`)
-        }
 
     return (  
         <Layout page ='Login' hideNav>

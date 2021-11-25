@@ -1,5 +1,5 @@
-import { FC, FormEvent, useContext, useState } from 'react';
-import {profile} from './api';
+import { FC, FormEvent, useContext, useEffect, useState } from 'react';
+import {deleteDog, profile} from './api';
 import { getBreeds, showDogsList} from '../../../api';
 import { Breeds, Dogs} from '../../../types';
 import { AuthContext } from '../../../context';
@@ -25,25 +25,27 @@ const ProfileCard: FC =()=>{
 
         const {currentUser } = useContext(AuthContext);
 
-        const showBreeds = async ()=>{
-            const output = await getBreeds();
-            setDogBreed(output)
-            };
-        
-            (!dogbreed)? showBreeds(): console.log('breeds' , dogbreed);
-            
-            const showDogs = async ()=>{
-                const result = await showDogsList(currentUser?.id)
-                setDogsList(result) 
-            }
 
-            (!dogsList)? showDogs(): console.log('dogs' , dogsList);
+        useEffect(() => {
+            getBreeds().then((response) => {
+                setDogBreed(response);
+            });
+        },);
+
+
+        useEffect(() => {
+            showDogsList(currentUser?.id).then((response) => {
+                setDogsList(response);
+            });
+        },);
 
         const handleSubmit =  (e: FormEvent<HTMLElement>) => {
             e.preventDefault();
 
-            profile (currentUser?.id, {dogname, dogbreedselected})
-            
+            setDogName('');
+            setDogBreedSelected('');
+
+            profile (currentUser?.id, {dogname, dogbreedselected});
 
     }
 
@@ -58,7 +60,7 @@ const ProfileCard: FC =()=>{
 
                     <div>
                         <label htmlFor="dog-name">DOG´S NAME: </label>
-                        <input id="dog-name" type="text" name="dog-name" placeholder="ENTER YOUR DOG´S NAME" onChange={(e)=>{
+                        <input id="dog-name" type="text" name="dog-name" value={dogname} placeholder="ENTER YOUR DOG´S NAME" onChange={(e)=>{
                             setDogName(e.target.value)
                         }}/>
                     </div>
@@ -68,11 +70,12 @@ const ProfileCard: FC =()=>{
                         <select 
                         name="dog-breed" 
                         id="dog-breed" 
+                        value={dogbreedselected}
                         onChange={e =>{ 
                             setDogBreedSelected(e.target.value)
                         }}>
                             <option 
-                                value=" " 
+                                value=''
                                 selected disabled>SELECT YOUR DOG´S BREED
                             </option>
                                 {dogbreed?.map(breeds=>{
@@ -91,7 +94,7 @@ const ProfileCard: FC =()=>{
                     <div className ='dog-name-list'> {dogsList?.map(dogs=>{
                                     return (
                                         <ul>    
-                                        <li>{dogs.dogname}</li>
+                                        <li>{dogs.dogname} <button onClick={() => deleteDog(currentUser?.id,`${dogs.id}`)}> DELETE DOG</button></li>
                                         </ul>
                                     )
                                 })}

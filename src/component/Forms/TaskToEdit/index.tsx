@@ -2,9 +2,10 @@ import { FC, FormEvent, useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { editedTask, getCategories, getTaskToEdit } from "./api";
 import { Category, Todo } from "../../../types";
+import { AuthContext } from "../../../context";
 
 import './styles.scss';
-import { AuthContext } from "../../../context";
+
 
 const defaultValues: Todo={
     title: '',
@@ -14,7 +15,7 @@ const defaultValues: Todo={
     category:'',
 }
 
-const TaskToEdit:FC   = ()=> {
+const TaskToEdit:FC = ()=> {
     
     const [categorylist, setCategoryList] = useState<Category[]>()
 
@@ -41,7 +42,7 @@ const TaskToEdit:FC   = ()=> {
     },);
 
     useEffect (()=>{
-        
+
             getTaskToEdit(currentUser?.id, dogselected, taskid ).then(response=>{
                 
                 setTaskSelected(response) 
@@ -51,10 +52,11 @@ const TaskToEdit:FC   = ()=> {
 
     const handleSubmit =  (e: FormEvent<HTMLElement>) => {
         e.preventDefault();
-        
+
         editedTask (currentUser?.id, dogselected, taskid, { ...inputs} )
 
         push(`/dashboard/user:${currentUser?.id}/dogid:${dogselected}`);
+
     }
 
     return (

@@ -18,6 +18,9 @@ const Categories: FC = () => {
         e.preventDefault();
         
         createCategory(currentUser?.id, {category} )
+
+        setCategory('');
+    
     };
 
     useEffect(() => {

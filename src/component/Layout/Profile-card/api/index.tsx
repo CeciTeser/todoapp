@@ -8,4 +8,8 @@ const profile= async (user:string|undefined, data: Dogs) =>{
 
 }
 
-export { profile };
+const deleteDog = (user:string|undefined , dog:string ) => {
+    api.delete(`/users/${user}/dogs/${dog}.json`);
+
+};
+export { profile , deleteDog};

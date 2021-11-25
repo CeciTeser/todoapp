@@ -10,13 +10,6 @@ import {validationSchema} from './validation-schema'
 import './styles.scss';
 
 
-
-// const defaultValues = {
-//     email: "",
-//     password: "",
-// };
-
-
 const Login:FC =()=>{
 
     const { login } = useAuth();

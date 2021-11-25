@@ -28,12 +28,12 @@ const AddTask:FC <Props>  = ({dogselected, setDogSelected, updatetable, setUpdat
     const {currentUser } = useContext(AuthContext);
     
 
-    const showDogs = async ()=>{
-        const result = await showDogsList(currentUser?.id)
-        setDogsList(result) 
-    }
-        
-    (!dogsList)? showDogs(): console.log('dogs' , dogsList);
+
+    useEffect(() => {
+        showDogsList(currentUser?.id).then((response) => {
+            setDogsList(response);
+        });
+    },);
     
 
     useEffect(() => {
@@ -44,12 +44,16 @@ const AddTask:FC <Props>  = ({dogselected, setDogSelected, updatetable, setUpdat
     
     const handleSubmit =  (e: FormEvent<HTMLElement>) => {
             e.preventDefault();
-            setUpdateTable(!updatetable)
-            // console.log('update1', updatetable)
+
         todocard (currentUser?.id, dogselected, {title, description, todostate, tododate, category})
-        
-        // console.log('add')
-        // console.log('update2', updatetable)
+
+        setUpdateTable(!updatetable)
+
+        setTitle(" ");
+        setDescription(" ");
+        setToDoState(" ");
+        setToDoDate(" ");
+        setCategory(" ");
     }
 
     if(dogselected) {        
@@ -57,31 +61,31 @@ const AddTask:FC <Props>  = ({dogselected, setDogSelected, updatetable, setUpdat
     }
 
 
-    // console.log('update3', updatetable)
-
 return (
         <div className='to-do-card'>
 
             <div className='select-dog'>
 
                 <h5 >Hi {currentUser?.username} </h5>
-                <div>
+                
+
+            </div>
+            
+            <form action="" onSubmit={handleSubmit}>
+            <div>
                     <label htmlFor="dog-todocard">YOUR DOG</label>
                     <select name="dog-todocard" id="dog-todocard" onChange={e =>{ 
                         setDogSelected(e.target.value) 
-                        }}>
+                        }} required >
                         <option value={dogselected} selected disabled>SELECT YOUR DOG</option>
                             {dogsList?.map(dogs=>{
                                 return (
-                                    <option key={dogs.id} value={dogs.id}>{dogs.dogname}</option>
+                                    <option key={dogs.id} value={dogs.id}>{dogs.dogname} </option>
                                 )
                             })}
+                            
                     </select>   
                 </div>
-
-            </div>
-
-            <form action="" onSubmit={handleSubmit} >
                 <div>
                     <label htmlFor="title">TITLE</label>
                     <input 
@@ -90,7 +94,7 @@ return (
                     name="title"
                     onChange={(e) => {
                         setTitle(e.target.value);
-                    }}/>
+                    }}required/>
                 </div>  
 
                 <div>
@@ -101,7 +105,7 @@ return (
                     name="description"
                     onChange={(e) => {
                         setDescription(e.target.value);
-                    }}/>
+                    }}required/>
                 </div>
 
                 <div>
@@ -112,7 +116,6 @@ return (
                     onChange={(e) => {
                     setToDoState(e.target.value);
                     }}
-                    required
                 >
                 <option value="" selected>SELECT A STATE</option>
                 <option value="inprogress">In progress</option>
@@ -130,8 +133,7 @@ return (
                     name="toDoDate"
                     onChange={(e) => {
                     setToDoDate(e.target.value);
-                    }}
-                />
+                    }}/>
             </div>
             <div>
                 <label htmlFor="category">CATEGORY</label>
@@ -140,9 +142,9 @@ return (
                     name="category"
                     onChange={(e) => {
                         setCategory(e.target.value);
-                    }}
-                >
-                <option value={dogselected} selected disabled>SELECT YOUR CATEGORY</option>
+                    }}>
+                <option value={dogselected}>SELECT YOUR CATEGORY</option>
+                <option value="noCategory">NO SPECIFIC CATEGORY</option>
                             {categorylist?.map(item=>{
                                 return (
                                     <option key={item.id} value={item.category}>{item.category}</option>

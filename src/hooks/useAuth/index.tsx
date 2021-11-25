@@ -54,7 +54,6 @@ const useAuth = () => {
             setTokenStorage(token);
             push("/");
             setCurrentUser(user);
-            // setHasUserLoggedIn(true);
             } else {
                 setUserSession(false);
             }

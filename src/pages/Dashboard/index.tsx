@@ -18,7 +18,7 @@ const Dashboard:FC =()=>{
 
                 <AddTask dogselected={dogselected} updatetable={updatetable} setDogSelected={setDogSelected} setUpdateTable={setUpdateTable}/>
             
-                <Schedule dogselected={dogselected} updatetable={updatetable} setDogSelected={setDogSelected} />
+                <Schedule dogselected={dogselected} updatetable={updatetable} setDogSelected={setDogSelected} setUpdateTable={setUpdateTable}/>
             </div>
         </Layout>
 

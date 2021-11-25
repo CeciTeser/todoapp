@@ -11,9 +11,10 @@ export type Props={
     dogselected: string,
     setDogSelected: Dispatch<SetStateAction<string>>,
     updatetable:boolean,
+    setUpdateTable: Dispatch<SetStateAction<boolean>>,
     
 }
-const Schedule:FC <Props> =({dogselected, setDogSelected, updatetable})=>{
+const Schedule:FC <Props> =({dogselected, setDogSelected, updatetable, setUpdateTable})=>{
 
     const {currentUser } = useContext(AuthContext);
 

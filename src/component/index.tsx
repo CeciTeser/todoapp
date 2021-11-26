@@ -7,4 +7,5 @@ export { AddTask } from './Forms/AddTask'
 export { Schedule } from './Layout/Schedule'
 export { TaskToEdit } from './Forms/TaskToEdit'
 export { Footer } from './Common/Footer'
+export { Contact } from './Common/Contact'
 

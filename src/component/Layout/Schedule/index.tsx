@@ -1,7 +1,7 @@
 import { Dispatch, FC, SetStateAction, useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { AuthContext } from "../../../context";
-import { Todo } from "../../../types";
+import { Todo} from "../../../types";
 import { deleteTask, getToDoList } from "./api";
 
 
@@ -12,9 +12,8 @@ export type Props={
     setDogSelected: Dispatch<SetStateAction<string>>,
     updatetable:boolean,
     setUpdateTable: Dispatch<SetStateAction<boolean>>,
-    
 }
-const Schedule:FC <Props> =({dogselected, setDogSelected, updatetable, setUpdateTable})=>{
+const Schedule:FC <Props> =({dogselected, updatetable})=>{
 
     const {currentUser } = useContext(AuthContext);
 
@@ -32,14 +31,23 @@ const Schedule:FC <Props> =({dogselected, setDogSelected, updatetable, setUpdate
                 
             })
         }
-    },[dogselected, currentUser?.id, updatetable])
+    },[dogselected, currentUser?.id, updatetable]);
 
-//  
 
     if(idtask)  {
-        localStorage.setItem("taskid", JSON.stringify(idtask));
+        localStorage.setItem("taskid", idtask);
         push(`/edit-task/user:${currentUser?.username}/dogid:${dogselected}/taskid:${idtask}`)
-    }
+    };
+
+    const removeTask = async (currentUserId?: string, taskId?: string) => {
+        await deleteTask(currentUserId, dogselected, taskId!)
+
+        getToDoList(currentUser?.id, dogselected ).then(response => {
+
+            setTasks(response) 
+            
+        })
+    };
 
     return (
         <div>
@@ -64,8 +72,8 @@ const Schedule:FC <Props> =({dogselected, setDogSelected, updatetable, setUpdate
                     <td>{task.tododate}</td>
                     <td>{task.todostate}</td>
                     <td>{task.category}</td>
-                    <td> <button onClick={() => setidTask(task.id)}>  EDIT </button> </td>
-                    <td> <button onClick={() => deleteTask(currentUser?.id, dogselected, `${task.id}`)}> DELETE </button> </td>
+                    <td> <button onClick={() => setidTask(task.id)}> EDIT </button> </td>
+                    <td> <button onClick={() => removeTask(currentUser?.id, task.id)}> DELETE </button> </td>
                 </tr>
                     );
                 })}
@@ -74,5 +82,6 @@ const Schedule:FC <Props> =({dogselected, setDogSelected, updatetable, setUpdate
         </div> 
     )
 
-}
-    export { Schedule }
+};
+
+export { Schedule }

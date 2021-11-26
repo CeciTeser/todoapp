@@ -33,31 +33,28 @@ const AddTask:FC <Props>  = ({dogselected, setDogSelected, updatetable, setUpdat
         showDogsList(currentUser?.id).then((response) => {
             setDogsList(response);
         });
-    },);
-    
-
-    useEffect(() => {
         getCategories(currentUser?.id).then((response) => {
             setCategoryList(response);
         });
-    },);
+    },[]);
     
-    const handleSubmit =  (e: FormEvent<HTMLElement>) => {
+    
+    const handleSubmit = async (e: FormEvent<HTMLElement>) => {
             e.preventDefault();
 
-        todocard (currentUser?.id, dogselected, {title, description, todostate, tododate, category})
+        await todocard (currentUser?.id, dogselected, {title, description, todostate, tododate, category})
 
         setUpdateTable(!updatetable)
 
-        setTitle(" ");
-        setDescription(" ");
-        setToDoState(" ");
-        setToDoDate(" ");
-        setCategory(" ");
+        setTitle('');
+        setDescription('');
+        setToDoState('');
+        setToDoDate('');
+        setCategory('');
     }
 
     if(dogselected) {        
-        localStorage.setItem("dogselected", JSON.stringify(dogselected));
+        localStorage.setItem("dogselected", dogselected);
     }
 
 
@@ -78,11 +75,11 @@ return (
                         setDogSelected(e.target.value) 
                         }} required >
                         <option value={dogselected} selected disabled>SELECT YOUR DOG</option>
-                            {dogsList?.map(dogs=>{
-                                return (
-                                    <option key={dogs.id} value={dogs.id}>{dogs.dogname} </option>
-                                )
-                            })}
+                        {dogsList?.map(dogs=>{
+                            return (
+                                <option key={dogs.id} value={dogs.id} selected={dogselected === dogs.id}>{dogs.dogname} </option>
+                            )
+                        })}
                             
                     </select>   
                 </div>
@@ -92,6 +89,7 @@ return (
                     type="text" 
                     id="title"
                     name="title"
+                    value={title}
                     onChange={(e) => {
                         setTitle(e.target.value);
                     }}required/>
@@ -103,6 +101,7 @@ return (
                     type="text" 
                     id="description"
                     name="description"
+                    value={description}
                     onChange={(e) => {
                         setDescription(e.target.value);
                     }}required/>
@@ -113,15 +112,16 @@ return (
                 <select 
                     id="toDoState"
                     name="toDoState"
+                    value={todostate}
                     onChange={(e) => {
                     setToDoState(e.target.value);
                     }}
                 >
                 <option value="" selected>SELECT A STATE</option>
-                <option value="inprogress">In progress</option>
-                <option value="done">Done</option>
-                <option value="pending">Pending</option>
-                <option value="canceled">Canceled</option>
+                <option value="In Progress">In progress</option>
+                <option value="Done">Done</option>
+                <option value="Pending">Pending</option>
+                <option value="Canceled">Canceled</option>
                 </select>
             </div>
 
@@ -131,6 +131,7 @@ return (
                     id="toDoDate"
                     type="date"
                     name="toDoDate"
+                    value={tododate}
                     onChange={(e) => {
                     setToDoDate(e.target.value);
                     }}/>
@@ -144,7 +145,7 @@ return (
                         setCategory(e.target.value);
                     }}>
                 <option value={dogselected}>SELECT YOUR CATEGORY</option>
-                <option value="noCategory">NO SPECIFIC CATEGORY</option>
+                <option value="No Category">NO CATEGORY</option>
                             {categorylist?.map(item=>{
                                 return (
                                     <option key={item.id} value={item.category}>{item.category}</option>

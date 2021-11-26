@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { TaskToEdit, Layout } from '../../component';
+import {Layout, TaskToEdit } from '../../component';
 import { WithAuth } from '../../hoc';
 
 
@@ -8,7 +8,7 @@ const EditTask:FC = ()=>{
 
     return (
     
-        <Layout page ='edittask'>
+        <Layout page ='edit-task'>
         
             <TaskToEdit/> 
 

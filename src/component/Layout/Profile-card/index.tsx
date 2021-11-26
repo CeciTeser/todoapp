@@ -49,7 +49,6 @@ const ProfileCard: FC =()=>{
 
     }
 
-
     return (
             <div className="profile-card">
                 <form action="" onSubmit={handleSubmit}>
@@ -80,7 +79,7 @@ const ProfileCard: FC =()=>{
                             </option>
                                 {dogbreed?.map(breeds=>{
                                     return (
-                                        <option value={breeds.name}>{breeds.name}</option>
+                                        <option key={breeds.id} value={breeds.name}>{breeds.name}</option>
                                     )
                                 })}
                         </select>   

@@ -9,8 +9,10 @@ import './styles.scss';
 
 const Dashboard:FC =()=>{
 
-    const [dogselected, setDogSelected] = useState <string>('');
+
+    const [dogselected, setDogSelected] = useState < string >(localStorage.getItem('dogselected')?.toString() || '');
     const [updatetable , setUpdateTable] = useState (false)
+
 
     return (
         <Layout page ='home'>

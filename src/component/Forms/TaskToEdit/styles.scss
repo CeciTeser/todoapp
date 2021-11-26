@@ -45,4 +45,20 @@
             background-color:$fourth-color ;
         }
     }
+    button {
+        width:10rem;
+        height: 2rem;
+        margin:2rem 0rem 0rem 2rem;
+        font-size: 0.7rem;
+        letter-spacing: 1px;
+        border:none;
+        border-radius: 3px;
+        color: $secondary-color;
+        background-color: $fourth-color;
+    }
+
+    button:hover{
+        color: $fourth-color;
+        background-color:$secondary-color ;
+    }
 }

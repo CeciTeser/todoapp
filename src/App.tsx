@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard';
 import { BrowserRouter, Switch, Route,} from 'react-router-dom';
 import EditTasks from './pages/EditTasks';
 import { AuthProvider } from './context';
+import { ContactPage } from './pages/Contact';
 
 
 
@@ -17,7 +18,7 @@ function App() {
     <AuthProvider>
       <BrowserRouter>
         <Switch>
-            {/*<Route path="/contact" component={Contact}/>*/}
+            <Route path="/contact" component={ContactPage}/>
             <Route path="/categories" component={CategoriesPage}/> 
             <Route path="/dashboard" component={Dashboard}/> 
             <Route path="/edit-task" component={EditTasks}/> 

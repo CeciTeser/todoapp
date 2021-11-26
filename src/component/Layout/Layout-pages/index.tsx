@@ -6,8 +6,9 @@ import { Header } from '../../Common'
 type Props={
     page?:string,
     hideNav?:boolean, 
+    hideFooter?:boolean,
 }
-const Layout:FC < Props >= ({children , page, hideNav})=> {
+const Layout:FC < Props >= ({children , page, hideNav, hideFooter})=> {
 
     return (
         <>
@@ -16,8 +17,7 @@ const Layout:FC < Props >= ({children , page, hideNav})=> {
             <Main className = {page} >
             {children}
             </Main>
-
-            <Footer/>
+            {!hideFooter &&  <Footer />} 
 
         </>
     )

@@ -1,0 +1,11 @@
+@import '../../scss/variables.scss';
+
+a{
+    width: 5rem;
+    height: 2rem;
+    font-size: 0.6rem;
+    letter-spacing: 1px;
+    text-decoration: none;
+    color: $secondary-color;
+    background-color: $fourth-color;;
+}

@@ -5,9 +5,9 @@ export const validationSchema = yup.object().shape({
     email: yup
     .string()
     .email()
-    .required(),
+    .required('Campo obligatorio'),
     password: yup
     .string()
-    .required(),
+    .required('Campo obligatorio'),
 
 })

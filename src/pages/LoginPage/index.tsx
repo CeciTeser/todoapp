@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Layout} from '../../component';
-import {Login} from '../../component/Forms/Login'
+import {Login} from '../../component/Forms/Login';
 
 
 

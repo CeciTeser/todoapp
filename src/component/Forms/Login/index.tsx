@@ -1,4 +1,4 @@
-import { FC, FormEvent, useState } from 'react';
+import { FC } from 'react';
 import { useAuth } from '../../../hooks';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -44,9 +44,7 @@ const Login:FC =()=>{
                         <input 
                             id="email" 
                             type="email"    
-                            // value={inputs.email} 
                             placeholder="ENTER YOUR EMAIL" 
-                            // onChange={(e) => setInputs({ ...inputs, email: e.target.value })}
                             required
                             {...register('email')}
                         />
@@ -58,8 +56,6 @@ const Login:FC =()=>{
                             id="password" 
                             type="password" 
                             placeholder="ENTER YOUR PASSWORD" 
-                            // value={inputs.password}
-                            // onChange={(e) => setInputs({ ...inputs, password: e.target.value })}
                             required 
                             {...register('password')}  
                         />

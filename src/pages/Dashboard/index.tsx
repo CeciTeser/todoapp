@@ -11,7 +11,7 @@ const Dashboard:FC =()=>{
 
 
     const [dogselected, setDogSelected] = useState < string >(localStorage.getItem('dogselected')?.toString() || '');
-    const [updatetable , setUpdateTable] = useState (false)
+    const [updatetable , setUpdateTable] = useState (false);
 
 
     return (
@@ -26,6 +26,6 @@ const Dashboard:FC =()=>{
 
     )
 
-}
+};
 
 export default WithAuth(Dashboard);

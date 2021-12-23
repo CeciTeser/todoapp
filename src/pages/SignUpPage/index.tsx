@@ -4,10 +4,6 @@ import { Layout } from '../../component';
 import { SignUp } from '../../component/Forms';
 
 
-
-
-
-
 const SignUpPage: FC = ()=>{
 
 

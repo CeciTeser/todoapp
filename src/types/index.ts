@@ -41,7 +41,7 @@ export type Dogs = {
     id?:string;
     dogname: string;
     dogbreedselected: string;
-} 
+};
 
 export type Todo = {
     id?:string;
@@ -55,6 +55,6 @@ export type Todo = {
 export type Category = {
     id?: string,
     category?: string,
-}
+};
 
 
